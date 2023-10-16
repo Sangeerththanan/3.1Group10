@@ -21,6 +21,7 @@ function App() {
     <p>Vish.js</p>
     <hr></hr>
     <Content></Content>
+    <Footer></Footer>
     </>
   );
 }
