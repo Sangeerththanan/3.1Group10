@@ -10,7 +10,7 @@ export default function Content() {
         <p>Lux.js</p>
         <p>Naveen.js</p>
         <p>Rukku.js</p>
-        <p>Saja.js</p>
+        <p>footer.js</p>
         <p>Vish.js</p>
         </>
     )
