@@ -20,13 +20,6 @@ function App() {
     <p>Vish.js</p>
     <hr></hr>
     <Content></Content>
-    <p>Niljana.js</p>
-    <p>Kapil.js</p>
-    <p>Lux.js</p>
-    <p>Naveen.js</p>
-    <p>Rukku.js</p>
-    <p>Saja.js</p>
-    <p>Vish.js</p>
     </>
   );
 }
