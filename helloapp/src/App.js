@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Content from './components/Content';
+import Footer from './components/footer';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
     <hr></hr>
     <p>Rukku.js</p>
     <hr></hr>
-    <p>Saja.js</p>
+    <p>footer.js</p>
     <hr></hr>
     <p>Vish.js</p>
     <hr></hr>
