@@ -7,6 +7,8 @@ module.exports = app => {
     // Create a new employee, employer record
     router.post("/employees", employees.create);
     router.post("/employers", employers.create);
+
+    router.post("/signin",employees.signin)
     
     app.use("/api", router);
 };
