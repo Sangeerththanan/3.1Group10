@@ -1,8 +1,11 @@
 import React from 'react';
-import AppForm from './app/components/AppForm';
+import { NavigationContainer } from '@react-navigation/native';
+import MainNavigator from './app/MainNavigator';
 
 export default function App() {
   return (
-    <AppForm />
+    <NavigationContainer>
+      <MainNavigator />
+    </NavigationContainer>
   );
 }

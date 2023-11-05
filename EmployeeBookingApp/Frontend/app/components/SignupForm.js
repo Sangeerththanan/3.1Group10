@@ -9,6 +9,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 import Client from '../api/Client';
+import { StackActions } from '@react-navigation/native';
 
 const validationSchema = Yup.object({
     name: Yup.string().trim().min(3, 'Invalid name!').required('Name is required!'),
@@ -22,7 +23,7 @@ const validationSchema = Yup.object({
 })
 
 // create a component
-const SignupForm = () => {
+const SignupForm = ({ navigation }) => {
     const [selectedWorkType, setSelectedWorkType] = React.useState('');
     const userInfo = {
         name: '',
@@ -42,6 +43,13 @@ const SignupForm = () => {
             payment: paymentValue, // Send the parsed number, not the string
             workType: selectedWorkType // Include the selected work type in the data
         });
+
+        if (res.data.success) {
+            navigation.dispatch(
+                StackActions.replace('EmployeeProfile')
+            );
+        }
+
         //console.log({ ...values, payment: paymentValue });
         console.log(res.data);
         formikAction.resetForm();

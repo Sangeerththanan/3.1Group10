@@ -4,13 +4,83 @@ import FormContainer from './FormContainer';
 import FormInput from './FormInput';
 import FormSubmitButton from './FormSubmitButton';
 
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+import Client from '../api/Client';
+import { StackActions } from '@react-navigation/native';
+
+const validationSchema = Yup.object({
+    email: Yup.string().email('Invalid email').required('Email is required!'),
+    password: Yup.string().trim().min(8, 'Password is too short!').required('Password is required!'),
+})
+
 // create a component
-const LoginForm = () => {
+const LoginForm = ({ navigation }) => {
+    const userInfo = {
+        email: '',
+        password: '',
+    }
+
+    const signIn = async (values, formikAction) => {
+        //console.log(values);
+        const res = await Client.post('/signin', {
+            ...values,
+        });
+        if (res.data.success) {
+            navigation.dispatch(
+                StackActions.replace('EmployeeProfile')
+            );
+        }
+        console.log(res.data);
+        formikAction.resetForm();
+        formikAction.setSubmitting(false);
+    };
+
     return (
         <FormContainer>
-            <FormInput lable='Email' placeholder='example@gmail.com' />
-            <FormInput lable='Password' placeholder='********' />
-            <FormSubmitButton lable='Login' />
+            <Formik
+                initialValues={userInfo}
+                validationSchema={validationSchema}
+                onSubmit={signIn}
+            >
+                {({
+                    values,
+                    errors,
+                    isSubmitting,
+                    touched,
+                    handleChange,
+                    handleSubmit,
+                }) => {
+                    const { email, password } = values
+                    return (
+                        <>
+                            <FormInput
+                                value={email}
+                                error={touched.email && errors.email}
+                                onChangeText={handleChange('email')}
+                                lable='Email'
+                                placeholder='example@gmail.com'
+                                autoCapitalize='none'
+                            />
+                            <FormInput
+                                value={password}
+                                error={touched.password && errors.password}
+                                onChangeText={handleChange('password')}
+                                lable='Password'
+                                placeholder='********'
+                                autoCapitalize='none'
+                                secureTextEntry
+                            />
+                            <FormSubmitButton
+                                lable='Login'
+                                submitting={isSubmitting}
+                                onPress={handleSubmit}
+                            />
+                        </>
+                    );
+                }}
+            </Formik>
         </FormContainer>
     );
 };

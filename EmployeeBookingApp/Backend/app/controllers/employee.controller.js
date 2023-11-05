@@ -37,7 +37,8 @@ exports.create = (req, res) => {
     employee
       .save(employee)
       .then(data => {
-        res.send(data);
+        res.json({ success: true, data });
+        //res.send(data);
       })
       .catch(err => {
         res.status(500).send({

@@ -13,7 +13,7 @@ const { width } = Dimensions.get('window')
 
 
 // create a component
-const AppForm = () => {
+const AppForm = ({ navigation }) => {
     const animation = useRef(new Animated.Value(0)).current;
     const scrollview = useRef();
 
@@ -95,9 +95,9 @@ const AppForm = () => {
                     { useNativeDriver: false }
                 )}
             >
-                <LoginForm />
+                <LoginForm navigation={navigation} />
                 <ScrollView>
-                    <SignupForm />
+                    <SignupForm navigation={navigation} />
                 </ScrollView>
             </ScrollView>
         </View>
