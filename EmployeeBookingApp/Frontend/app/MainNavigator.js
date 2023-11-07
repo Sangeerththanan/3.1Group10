@@ -1,10 +1,12 @@
 //import liraries
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AppForm from './components/AppForm';
 import EmployeeProfile from './components/EmployeeProfile';
 
 import { createStackNavigator } from '@react-navigation/stack';
+import { useLogin } from './context/LoginProvider';
+//import DrawerNavigator from './DrawerNavigator';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +21,9 @@ const StackNavigator = () => {
 
 // create a component
 const MainNavigator = () => {
+  const {isLoggedIn} = useLogin();
   return (
+    //isLoggedIn? <DrawerNavigator/> : <StackNavigator />
     <StackNavigator />
   );
 };

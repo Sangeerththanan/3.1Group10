@@ -29,7 +29,7 @@ const LoginForm = ({ navigation }) => {
         });
         if (res.data.success) {
             navigation.dispatch(
-                StackActions.replace('EmployeeProfile')
+                StackActions.replace('EmployeeProfile', { email: values.email })
             );
         }
         console.log(res.data);

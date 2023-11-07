@@ -44,11 +44,11 @@ const SignupForm = ({ navigation }) => {
             workType: selectedWorkType // Include the selected work type in the data
         });
 
-        if (res.data.success) {
-            navigation.dispatch(
-                StackActions.replace('EmployeeProfile')
-            );
-        }
+        // if (res.data.success) {
+        //     navigation.dispatch(
+        //         StackActions.replace('EmployeeProfile')
+        //     );
+        // }
 
         //console.log({ ...values, payment: paymentValue });
         console.log(res.data);
