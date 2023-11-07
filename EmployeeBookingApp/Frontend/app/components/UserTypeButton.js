@@ -1,6 +1,6 @@
 //import liraries
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity,Dimensions } from 'react-native';
 
 // create a component
 const UserTypeButton = ({ lable, submitting, onPress }) => {
@@ -15,6 +15,7 @@ const UserTypeButton = ({ lable, submitting, onPress }) => {
 // define your styles
 const styles = StyleSheet.create({
     container: {
+        width:Dimensions.get('window').width*0.9,
         height: 45,
         borderRadius: 8,
         justifyContent: 'center',
