@@ -49,6 +49,7 @@ exports.create = (req, res) => {
   });
 };
 
+// Authentication of the employee
 exports.signin = async (req, res) => {
   if (!req.body.email || !req.body.password) {
     res.status(400).send({ message: "Content can not be empty!" });
@@ -73,3 +74,18 @@ exports.signin = async (req, res) => {
   }
 };
 
+// Get employee details by email
+exports.findOne = (req, res) => {
+  const {email}= req.params;
+  Employee.findOne({email})
+    .then(data => {
+      if (!data)
+      res.status(404).send({ message: `Not found student with email: ${email}` });
+      else res.json(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: `Error retrieving student with email: + ${email}`});
+    });
+};

@@ -9,6 +9,9 @@ module.exports = app => {
     router.post("/employers", employers.create);
 
     router.post("/signin",employees.signin)
+
+    // Retrieve a single employe with email
+    router.get("/employees/:email", employees.findOne);
     
     app.use("/api", router);
 };
