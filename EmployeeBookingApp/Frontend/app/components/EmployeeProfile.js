@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Client from '../api/Client';
-import { useRoute } from '@react-navigation/native';
+import { useLogin } from '../context/LoginProvider';
 
 // create a component
 const EmployeeProfile = () => {
-    const route = useRoute();
+    const { profile } = useLogin();
     const [employeeData, setEmployeeData] = useState(null);
-    const { email } = route.params; // Get the email parameter from the route
+    const { email } = profile;
+    //console.log('email: ',email);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,7 +28,7 @@ const EmployeeProfile = () => {
         <View style={styles.container}>
             {employeeData ? (
                 <View>
-                {/* <Text>{`Employee Name: ${employeeData.name}`}</Text> */}
+                    {/* <Text>{`Employee Name: ${employeeData.name}`}</Text> */}
                     {Object.keys(employeeData).map(key => (
                         <Text style={styles.text} key={key}>{`${key.charAt(0).toUpperCase() + key.slice(1)}: ${employeeData[key]}`}</Text>
                     ))}
@@ -37,7 +38,7 @@ const EmployeeProfile = () => {
             )}
         </View>
     );
-    
+
 };
 
 // define your styles

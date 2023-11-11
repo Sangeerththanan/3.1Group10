@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 
 import Client from '../api/Client';
 import { StackActions } from '@react-navigation/native';
+import { useLogin } from '../context/LoginProvider';
 
 const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email').required('Email is required!'),
@@ -17,6 +18,7 @@ const validationSchema = Yup.object({
 
 // create a component
 const LoginForm = ({ navigation }) => {
+    const {setIsLoggedIn, setProfile} = useLogin();
     const userInfo = {
         email: '',
         password: '',
@@ -28,9 +30,11 @@ const LoginForm = ({ navigation }) => {
             ...values,
         });
         if (res.data.success) {
-            navigation.dispatch(
-                StackActions.replace('EmployeeProfile', { email: values.email })
-            );
+            setProfile(res.data.employee);
+            setIsLoggedIn(true);
+            // navigation.dispatch(
+            //     StackActions.replace('EmployeeProfile', { email: values.email })
+            // );
         }
         console.log(res.data);
         formikAction.resetForm();
