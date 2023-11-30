@@ -4,7 +4,7 @@ import WelcomePage from './components/WelcomePage';
 import AppForm from './components/AppForm';
 import { useLogin } from './context/LoginProvider';
 import DrawerNavigator from './DrawerNavigator';
-
+import LoginForm from './components/LoginForm';
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
@@ -12,6 +12,7 @@ const StackNavigator = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen component={WelcomePage} name='WelcomePage' />
       <Stack.Screen component={AppForm} name='AppForm' />
+     <Stack.Screen component={LoginForm} name='LoginForm' />
     </Stack.Navigator>
   );
 };
