@@ -1,6 +1,6 @@
 //import liraries
 import React, { useEffect, useRef } from 'react';
-import { Animated, Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import { Animated, Dimensions, ScrollView, StyleSheet, View, Image } from 'react-native';
 
 import FormHeader from './FormHeader';
 import FormSelectorBtn from './FormSelectorBtn';
@@ -8,8 +8,10 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
 import axios from 'axios';
+import HomeBtn from './HomeBtn';
+import { StackActions } from '@react-navigation/native';
 
-const { width } = Dimensions.get('window')
+const { width } = Dimensions.get('window');
 
 
 // create a component
@@ -44,7 +46,11 @@ const AppForm = ({ navigation }) => {
 
     const fetchApi = async () => {
         try {
+<<<<<<< HEAD
             const res = await axios.get('http://192.168.8.150:8080/')
+=======
+            const res = await axios.get('http://192.168.145.91:8080/')
+>>>>>>> c681ce5dea0ddcf526025dfaf7644639053b598e
             console.log(res.data)
         } catch (error) {
             console.error(error);
@@ -55,8 +61,15 @@ const AppForm = ({ navigation }) => {
         fetchApi()
     }, [])
 
+    const welcomePage = async () => {
+        navigation.dispatch(
+            StackActions.replace('WelcomePage')
+            );
+    };
+
     return (
-        <View style={{ flex: 1, paddingTop: 120 }}>
+        <View style={{ flex: 1,}}>
+        <HomeBtn onPress={welcomePage}/>
             <View style={{ height: 80 }}>
                 <FormHeader
                     leftHeading='Welcome '
