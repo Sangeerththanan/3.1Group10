@@ -40,7 +40,7 @@ const EmployeeProfile = ({ navigation }) => {
                     />
                     <Text style={{ fontSize: 35 }}>{`${employeeData.name}`}</Text>
                     <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginVertical: 10 }} />
-                    <StatusBtn />
+                    <StatusBtn employee={employeeData} />
                     <Text style={styles.text}>{`Work Type: ${employeeData.workType}`}</Text>
                     <Text style={styles.text}>{`Email: ${employeeData.email}`}</Text>
                     <Text style={styles.text}>{`Contact No: ${employeeData.contactNo}`}</Text>

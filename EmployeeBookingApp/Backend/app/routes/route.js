@@ -16,5 +16,8 @@ module.exports = app => {
     // Update a journal with id
     router.put("/employees/:email", employees.update);
 
+    // Update employee status by email
+    router.put("/employees/status/:email", employees.updateStatus);
+
     app.use("/api", router);
 };

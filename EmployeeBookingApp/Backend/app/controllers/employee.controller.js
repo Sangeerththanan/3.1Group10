@@ -148,3 +148,26 @@ exports.update = (req, res) => {
   }
 };
 
+// Update employee status by email
+exports.updateStatus = async (req, res) => {
+  const { email } = req.params;
+  const { status } = req.body;
+
+  try {
+    // Update the employee status in the database
+    const updatedEmployee = await Employee.findOneAndUpdate(
+      { email },
+      { $set: { status } },
+      { new: true }
+    );
+
+    if (!updatedEmployee) {
+      return res.status(404).json({ error: 'Employee not found' });
+    }
+
+    return res.json(updatedEmployee);
+  } catch (error) {
+    console.error('Error updating employee status:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
