@@ -7,6 +7,7 @@ import FormSelectorBtn from './FormSelectorBtn';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
+
 import axios from 'axios';
 import HomeBtn from './HomeBtn';
 import { StackActions } from '@react-navigation/native';
@@ -38,7 +39,7 @@ const AppForm = ({ navigation }) => {
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,1)', 'rgba(27,27,51,0.4)'],
     });
-
+ 
     const signupColorInterpolate = animation.interpolate({
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,0.4)', 'rgba(27,27,51,1)'],
@@ -87,6 +88,7 @@ const AppForm = ({ navigation }) => {
                     lable='Login'
                     onPress={() => scrollview.current.scrollTo({ x: 0 })}
                 />
+             
                 <FormSelectorBtn
                     style={styles.borderRight}
                     backgroundColor={signupColorInterpolate}
@@ -105,6 +107,7 @@ const AppForm = ({ navigation }) => {
                 )}
             >
                 <LoginForm navigation={navigation} />
+               
                 <ScrollView>
                     <SignupForm navigation={navigation} />
                 </ScrollView>
