@@ -89,3 +89,62 @@ exports.findOne = (req, res) => {
         .send({ message: `Error retrieving student with email: + ${email}`});
     });
 };
+
+// Update a employee by the email in the request
+exports.update = (req, res) => {
+  if (!req.body.name || !req.body.email || !req.body.password || !req.body.confirmPassword || !req.body.contactNo || !req.body.address || !req.body.workType) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  const email = req.params.email;
+
+  // If the request includes a new password, hash it before updating
+  if (req.body.password) {
+    const saltRounds = 10;
+    bcrypt.hash(req.body.password, saltRounds, (err, hashedPassword) => {
+      if (err) {
+        return res.status(500).send({
+          message: "Error occurred while hashing the password."
+        });
+      }
+      req.body.password = hashedPassword;
+
+      // Use findOneAndUpdate to update the employee record
+      Employee.findOneAndUpdate({ email: email }, req.body, { useFindAndModify: false, new: true })
+        .then(data => {
+          if (!data) {
+            res.status(404).send({
+              message: `Cannot update employee with email=${email}. Maybe employee was not found!`
+            });
+          } else {
+            // res.send({ message: "Employee was updated successfully.", updatedEmployee: data });
+            res.json({ success: true, data });
+          }
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: "Error updating employee with email=" + email
+          });
+        });
+    });
+  } else {
+    // If no password is provided, update the record without hashing the password
+    Employee.findOneAndUpdate({ email: email }, req.body, { useFindAndModify: false, new: true })
+      .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update employee with email=${email}. Maybe employee was not found!`
+          });
+        } else {
+          res.send({ message: "Employee was updated successfully.", updatedEmployee: data });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating employee with email=" + email
+        });
+      });
+  }
+};
+
