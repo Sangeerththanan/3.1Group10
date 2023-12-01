@@ -7,7 +7,10 @@ import StatusBtn from './StatusBtn';
 import UserTypeButton from './UserTypeButton';
 
 // create a component
-const EmployeeProfile = ({ navigation }) => {
+const EmployeeProfile = ({ route, navigation }) => {
+    const { updatedData } = route.params ?? {};
+    //console.log('updatedData:'updatedData);
+
     const { profile } = useLogin();
     const [employeeData, setEmployeeData] = useState(null);
     const { email } = profile;
@@ -16,15 +19,20 @@ const EmployeeProfile = ({ navigation }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await Client.get(`/employees/${email}`);
-                setEmployeeData(response.data);
+                if (updatedData) {
+                    setEmployeeData(updatedData);
+                    //console.log('Updated!')
+                } else {
+                    const response = await Client.get(`/employees/${email}`);
+                    setEmployeeData(response.data);
+                }
             } catch (error) {
                 console.error('Error fetching employee data:', error);
             }
         };
 
         fetchData();
-    }, [email]); // Include email in the dependency array to fetch data when email changes
+    }, [email, updatedData]); // Include email in the dependency array to fetch data when email changes , // Include email and updatedData in the dependency array
 
     const editProfile = () => {
         navigation.navigate('Edit Profile', { employeeData });

@@ -47,8 +47,20 @@ const EditProfile = ({ route, navigation }) => {
             workType: selectedWorkType // Include the selected work type in the data
         });
 
+        updatedData = await Client.get(`/employees/${employeeData.email}`);
+        console.log('Fetched Data:', updatedData.data);
+        // Extract only the necessary and serializable information
+        const serializableData = {
+            name: updatedData.data.name,
+            workType: updatedData.data.workType,
+            email: updatedData.data.email,
+            contactNo: updatedData.data.contactNo,
+            address: updatedData.data.address,
+            payment: updatedData.data.payment
+        };
+
         if (res.data.success) {
-            navigation.navigate('Profile');
+            navigation.navigate('Profile', { updatedData: serializableData });
         }
 
         // if (res.data.success) {
@@ -58,7 +70,7 @@ const EditProfile = ({ route, navigation }) => {
         // }
 
         //console.log({ ...values, payment: paymentValue });
-        console.log(res.data);
+        //console.log(res.data);
         formikAction.resetForm();
         formikAction.setSubmitting(false);
     };
