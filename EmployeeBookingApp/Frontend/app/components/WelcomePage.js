@@ -46,6 +46,7 @@ const WelcomePage = ({navigation}) => {
         </View>
     );
 };
+};
 
 // define your styles
 const styles = StyleSheet.create({
