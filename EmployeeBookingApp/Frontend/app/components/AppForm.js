@@ -1,15 +1,18 @@
 //import liraries
 import React, { useEffect, useRef } from 'react';
-import { Animated, Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import { Animated, Dimensions, ScrollView, StyleSheet, View, Image } from 'react-native';
 
 import FormHeader from './FormHeader';
 import FormSelectorBtn from './FormSelectorBtn';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
-import axios from 'axios';
 
-const { width } = Dimensions.get('window')
+import axios from 'axios';
+import HomeBtn from './HomeBtn';
+import { StackActions } from '@react-navigation/native';
+
+const { width } = Dimensions.get('window');
 
 
 // create a component
@@ -36,7 +39,7 @@ const AppForm = ({ navigation }) => {
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,1)', 'rgba(27,27,51,0.4)'],
     });
-
+ 
     const signupColorInterpolate = animation.interpolate({
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,0.4)', 'rgba(27,27,51,1)'],
@@ -44,7 +47,7 @@ const AppForm = ({ navigation }) => {
 
     const fetchApi = async () => {
         try {
-            const res = await axios.get('http://172.16.28.211:8080/')
+            const res = await axios.get('http://192.168.1.10:8080/')
             console.log(res.data)
         } catch (error) {
             console.error(error);
@@ -55,8 +58,15 @@ const AppForm = ({ navigation }) => {
         fetchApi()
     }, [])
 
+    const welcomePage = async () => {
+        navigation.dispatch(
+            StackActions.replace('WelcomePage')
+            );
+    };
+
     return (
-        <View style={{ flex: 1, paddingTop: 120 }}>
+        <View style={{ flex: 1,}}>
+        <HomeBtn onPress={welcomePage}/>
             <View style={{ height: 80 }}>
                 <FormHeader
                     leftHeading='Welcome '
@@ -78,6 +88,7 @@ const AppForm = ({ navigation }) => {
                     lable='Login'
                     onPress={() => scrollview.current.scrollTo({ x: 0 })}
                 />
+             
                 <FormSelectorBtn
                     style={styles.borderRight}
                     backgroundColor={signupColorInterpolate}
@@ -96,6 +107,7 @@ const AppForm = ({ navigation }) => {
                 )}
             >
                 <LoginForm navigation={navigation} />
+               
                 <ScrollView>
                     <SignupForm navigation={navigation} />
                 </ScrollView>

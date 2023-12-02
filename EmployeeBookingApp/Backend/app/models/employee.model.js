@@ -9,7 +9,8 @@ module.exports = mongoose => {
         contactNo: { type: String, required: true },
         address: { type: String, required: true },
         workType: { type: String, required: true },
-        payment: { type: Number, required: true }
+        payment: { type: Number, required: true },
+        status: { type: String, default: 'Available' },
     });
 
     employeeSchema.method("toJSON", function () {

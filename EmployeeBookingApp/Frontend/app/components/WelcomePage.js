@@ -13,6 +13,11 @@ const WelcomePage = ({navigation}) => {
             StackActions.replace('AppForm')
         );
     };
+    const admin = async () => {
+        navigation.dispatch(
+            StackActions.replace('LoginForm')
+        );
+    };
 
     return (
         <View style={styles.container}>
@@ -22,7 +27,7 @@ const WelcomePage = ({navigation}) => {
             />
             <UserTypeButton
                 lable='Admin'
-            //onPress={employer}
+            onPress={admin}
             />
             <UserTypeButton
                 lable='Employee'
