@@ -8,10 +8,10 @@ module.exports = app => {
     // Create a new employee, employer record
     router.post("/employees", employees.create);
     router.post("/employers", employers.create);
-    router.post("/admin", admin.create);
 
+    // Signin
     router.post("/signin", employees.signin);
-    router.post("/signin", admin.signin);
+    router.post("/admin/signin", admin.signin);
 
     // Retrieve a single employe with email
     router.get("/employees/:email", employees.findOne);

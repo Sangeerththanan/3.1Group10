@@ -80,13 +80,13 @@ exports.findOne = (req, res) => {
   Employee.findOne({email})
     .then(data => {
       if (!data)
-      res.status(404).send({ message: `Not found student with email: ${email}` });
+      res.status(404).send({ message: `Not found employee with email: ${email}` });
       else res.json(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: `Error retrieving student with email: + ${email}`});
+        .send({ message: `Error retrieving employee with email: + ${email}`});
     });
 };
 

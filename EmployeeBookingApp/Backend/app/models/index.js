@@ -8,5 +8,6 @@ db.url = dbConfig.url;
 
 db.Employee = require("./employee.model.js")(mongoose);
 db.Employer = require("./employer.model.js")(mongoose);
+db.Admin = require("./admin.model.js")(mongoose);
 
 module.exports = db;
