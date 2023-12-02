@@ -71,7 +71,7 @@ const AppForm = ({ navigation }) => {
                 <FormHeader
                     leftHeading='Welcome '
                     rightHeading='Back'
-                    subHeading='Employee'
+                    subHeading='Employeer'
                     rightHeaderOpacity={rightHeaderOpacity}
                     leftHeaderTranslateX={leftHeaderTranslateX}
                     rightHeaderTranslateY={rightHeaderTranslateY}
@@ -106,10 +106,10 @@ const AppForm = ({ navigation }) => {
                     { useNativeDriver: false }
                 )}
             >
-                <LoginForm navigation={navigation} />
+                <ELoginForm navigation={navigation} />
                
                 <ScrollView>
-                    <SignupForm navigation={navigation} />
+                    <ESignupForm navigation={navigation} />
                 </ScrollView>
             </ScrollView>
         </View>
