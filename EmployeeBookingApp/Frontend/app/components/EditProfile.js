@@ -25,20 +25,44 @@ const validationSchema = Yup.object({
 
 // create a component
 const EditProfile = ({ route, navigation }) => {
-    const { employeeData } = route.params;
+    const email = route.params.employeeData.email;
+    const [employeeData, setEmployeeData] = React.useState(route.params.employeeData);
+    console.log(employeeData);
+    const fetchEmployeeData = async () => {
+        try {
+            const response = await Client.get(`/employees/${email}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching employee data:', error);
+            throw error; // Rethrow the error to handle it in the calling function
+        }
+    };
+
+
+    React.useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await fetchEmployeeData();
+                setEmployeeData(data);
+            } catch (error) {
+                // Handle the error (e.g., show an error message)
+            }
+        };
+        fetchData();
+    }, [email]);
 
     const [selectedWorkType, setSelectedWorkType] = React.useState('');
     const userInfo = {
-        name: employeeData.name,
-        email: employeeData.email,
+        name: employeeData?.name || '',
+        email: employeeData?.email || '',
         password: '',
         confirmPassword: '',
-        contactNo: employeeData.contactNo,
-        address: employeeData.address,
+        contactNo: employeeData?.contactNo || '',
+        address: employeeData?.address || '',
         workType: '',
         payment: undefined,
     }
-
+    
     const update = async (values, formikAction) => {
         const paymentValue = parseFloat(values.payment);
         const res = await Client.put(`/employees/${employeeData.email}`, {
@@ -47,8 +71,21 @@ const EditProfile = ({ route, navigation }) => {
             workType: selectedWorkType // Include the selected work type in the data
         });
 
+        const updatedData = await Client.get(`/employees/${values.email}`);
+        console.log('Fetched Data:', updatedData.data);
+        
+        // Extract only the necessary and serializable information
+        const serializableData = {
+            name: updatedData.data.name,
+            workType: updatedData.data.workType,
+            email: updatedData.data.email,
+            contactNo: updatedData.data.contactNo,
+            address: updatedData.data.address,
+            payment: updatedData.data.payment
+        };
+
         if (res.data.success) {
-            navigation.navigate('Profile');
+            navigation.navigate('Profile', { updatedData: serializableData });
         }
 
         // if (res.data.success) {
@@ -58,7 +95,7 @@ const EditProfile = ({ route, navigation }) => {
         // }
 
         //console.log({ ...values, payment: paymentValue });
-        console.log(res.data);
+        //console.log(res.data);
         formikAction.resetForm();
         formikAction.setSubmitting(false);
     };

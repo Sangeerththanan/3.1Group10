@@ -7,27 +7,27 @@ import StatusBtn from './StatusBtn';
 import UserTypeButton from './UserTypeButton';
 
 // create a component
-const EmployeeProfile = ({ route, navigation }) => {
+const EmployeerProfile = ({ route, navigation }) => {
     const { updatedData } = route.params ?? {};
     //console.log('updatedData:'updatedData);
 
     const { profile } = useLogin();
-    const [employeeData, setEmployeeData] = useState(null);
-    const { email } = profile;
+    const [employeeData, setEmployeerData] = useState(null);
+    const { email } = profile;}
     //console.log('email: ',email);
 
-    useEffect(() => {
+    /*useEffect(() => {
         const fetchData = async () => {
             try {
                 if (updatedData) {
-                    setEmployeeData(updatedData);
+                    setEmployeerData(updatedData);
                     //console.log('Updated!')
                 } else {
-                    const response = await Client.get(`/employees/${email}`);
-                    setEmployeeData(response.data);
+                    const response = await Client.get(`/employeer/${email}`);
+                    setEmployeerData(response.data);
                 }
             } catch (error) {
-                console.error('Error fetching employee data:', error);
+                console.error('Error fetching employeer data:', error);
             }
         };
 
@@ -35,25 +35,25 @@ const EmployeeProfile = ({ route, navigation }) => {
     }, [email, updatedData]); // Include email in the dependency array to fetch data when email changes , // Include email and updatedData in the dependency array
 
     const editProfile = () => {
-        navigation.navigate('Edit Profile', { employeeData });
+        navigation.navigate('Edit Profile', { employeerData });
     };
 
     return (
         <View style={styles.container}>
-            {employeeData ? (
+            {employeerData ? (
                 <View>
                     <Image
                         source={{ uri: 'https://images.unsplash.com/photo-1624243225303-261cc3cd2fbc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' }}
                         style={{ width: 150, height: 150, borderRadius: 75, alignSelf: 'center' }}
                     />
-                    <Text style={{ fontSize: 35 }}>{`${employeeData.name}`}</Text>
+                    <Text style={{ fontSize: 35 }}>{`${employeerData.name}`}</Text>
                     <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginVertical: 10 }} />
-                    <StatusBtn employee={employeeData} />
-                    <Text style={styles.text}>{`Work Type: ${employeeData.workType}`}</Text>
-                    <Text style={styles.text}>{`Email: ${employeeData.email}`}</Text>
-                    <Text style={styles.text}>{`Contact No: ${employeeData.contactNo}`}</Text>
-                    <Text style={styles.text}>{`Address: ${employeeData.address}`}</Text>
-                    <Text style={[styles.text, { marginBottom: 20 }]}>{`Payment: ${employeeData.payment}`}</Text>
+                    <StatusBtn employeer={employeerData} />
+                    <Text style={styles.text}>{`Work Type: ${employeerData.workType}`}</Text>
+                    <Text style={styles.text}>{`Email: ${employeerData.email}`}</Text>
+                    <Text style={styles.text}>{`Contact No: ${employeerData.contactNo}`}</Text>
+                    <Text style={styles.text}>{`Address: ${employeerData.address}`}</Text>
+                    <Text style={[styles.text, { marginBottom: 20 }]}>{`Payment: ${employeerData.payment}`}</Text>
                     <UserTypeButton
                         lable='Edit'
                         onPress={editProfile}
@@ -65,7 +65,7 @@ const EmployeeProfile = ({ route, navigation }) => {
         </View>
     );
 
-};
+};*/
 
 // define your styles
 const styles = StyleSheet.create({
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
 });
 
 // make this component available to the app
-export default EmployeeProfile;
+export default EmployeerProfile;

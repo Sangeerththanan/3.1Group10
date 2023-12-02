@@ -4,8 +4,8 @@ import { Animated, Dimensions, ScrollView, StyleSheet, View, Image } from 'react
 
 import FormHeader from './FormHeader';
 import FormSelectorBtn from './FormSelectorBtn';
-import LoginForm from './LoginForm';
-import SignupForm from './SignupForm';
+import ELoginForm from './ELoginForm';
+import ESignupForm from './ESignupForm';
 
 
 import axios from 'axios';
@@ -47,11 +47,7 @@ const AppForm = ({ navigation }) => {
 
     const fetchApi = async () => {
         try {
-<<<<<<< HEAD
-            const res = await axios.get('http://192.168.8.105:8080/');
-=======
             const res = await axios.get('http://192.168.1.10:8080/')
->>>>>>> 95c21da23060bcac0954cda57fb244d00699e7e1
             console.log(res.data)
         } catch (error) {
             console.error(error);
@@ -75,7 +71,7 @@ const AppForm = ({ navigation }) => {
                 <FormHeader
                     leftHeading='Welcome '
                     rightHeading='Back'
-                    subHeading='Employee'
+                    subHeading='Employeer'
                     rightHeaderOpacity={rightHeaderOpacity}
                     leftHeaderTranslateX={leftHeaderTranslateX}
                     rightHeaderTranslateY={rightHeaderTranslateY}
@@ -110,10 +106,10 @@ const AppForm = ({ navigation }) => {
                     { useNativeDriver: false }
                 )}
             >
-                <LoginForm navigation={navigation} />
+                <ELoginForm navigation={navigation} />
                
                 <ScrollView>
-                    <SignupForm navigation={navigation} />
+                    <ESignupForm navigation={navigation} />
                 </ScrollView>
             </ScrollView>
         </View>
