@@ -18,12 +18,12 @@ const WelcomePage = ({navigation}) => {
             StackActions.replace('LoginForm')
         );
     };
-    const WelcomePage = ({navigation}) => {
-        const employeer = async () => {
-            navigation.dispatch(
-                StackActions.replace('AppForm')
-            );
-        };
+    const employeer = async () => {
+        navigation.dispatch(
+            StackActions.replace('AppForm')
+        );
+    };
+    
 
     return (
         <View style={styles.container}>
@@ -41,11 +41,10 @@ const WelcomePage = ({navigation}) => {
             />
             <UserTypeButton
                 lable='Employer'
-            onPress={employeer}
+            onPress={employer}
             />
         </View>
     );
-};
 };
 
 // define your styles
