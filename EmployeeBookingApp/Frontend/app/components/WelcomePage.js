@@ -20,7 +20,7 @@ const WelcomePage = ({navigation}) => {
     };
     const employeer = async () => {
         navigation.dispatch(
-            StackActions.replace('AppForm')
+            StackActions.replace('EmployeerAppForm')
         );
     };
     
