@@ -47,7 +47,11 @@ const AppForm = ({ navigation }) => {
 
     const fetchApi = async () => {
         try {
+<<<<<<< HEAD
+            const res = await axios.get('http://192.168.8.105:8080/');
+=======
             const res = await axios.get('http://192.168.1.10:8080/')
+>>>>>>> 95c21da23060bcac0954cda57fb244d00699e7e1
             console.log(res.data)
         } catch (error) {
             console.error(error);

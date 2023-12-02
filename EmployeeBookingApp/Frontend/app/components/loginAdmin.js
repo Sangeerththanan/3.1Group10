@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import Client from '../api/Client';
 import { StackActions } from '@react-navigation/native';
 import { useLogin } from '../context/LoginProvider';
+import LoginAdmin from './LoginForm';
 
 const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email').required('Email is required!'),
@@ -17,7 +18,7 @@ const validationSchema = Yup.object({
 })
 
 // create a component
-const LoginForm= ({ navigation }) => {
+const LoginAdmin= ({ navigation }) => {
     const {setIsLoggedIn, setProfile} = useLogin();
     const userInfo = {
         email: '',
@@ -26,7 +27,7 @@ const LoginForm= ({ navigation }) => {
 
     const signIn = async (values, formikAction) => {
         //console.log(values);
-        const res = await Client.post('/signin', {
+        const res = await Client.post('/signIn', {
             ...values,
         });
         if (res.data.success) {
@@ -90,4 +91,4 @@ const LoginForm= ({ navigation }) => {
 };
 
 //make this component available to the app
-export default LoginForm;
+export default LoginAdmin;
