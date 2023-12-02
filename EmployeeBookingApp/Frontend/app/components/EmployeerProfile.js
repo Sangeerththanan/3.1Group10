@@ -12,7 +12,7 @@ const EmployeerProfile = ({ route, navigation }) => {
     //console.log('updatedData:'updatedData);
 
     const { profile } = useLogin();
-    const [employeeData, setEmployeerData] = useState(null);
+    const [employeerData, setEmployeerData] = useState(null);
     const { email } = profile;}
     //console.log('email: ',email);
 
