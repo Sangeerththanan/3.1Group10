@@ -41,7 +41,7 @@ const WelcomePage = ({navigation}) => {
             />
             <UserTypeButton
                 lable='Employer'
-            onPress={employer}
+            onPress={employeer}
             />
         </View>
     );
