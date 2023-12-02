@@ -63,7 +63,7 @@ exports.findOne = (req, res) => {
   Employer.findOne({email})
     .then(data => {
       if (!data)
-      res.status(400).send({ message: `Not found student with email: ${email}` });
+      res.status(404).send({ message: `Not found student with email: ${email}` });
       else res.json(data);
     })
     .catch(err => {
