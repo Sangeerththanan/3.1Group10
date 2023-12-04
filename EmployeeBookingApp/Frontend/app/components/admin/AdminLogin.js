@@ -1,16 +1,14 @@
 //import liraries
 import React from 'react';
-import FormContainer from './FormContainer';
-import FormInput from './FormInput';
-import FormSubmitButton from './FormSubmitButton';
+import FormContainer from '../employee/FormContainer';
+import FormInput from '../FormInput';
+import FormSubmitButton from '../FormSubmitButton';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import Client from '../api/Client';
-import { StackActions } from '@react-navigation/native';
-import { useLogin } from '../context/LoginProvider';
-import LoginAdmin from './LoginForm';
+import Client from '../../api/Client';
+import { useLogin } from '../../context/LoginProvider';
 
 const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email').required('Email is required!'),
@@ -18,8 +16,8 @@ const validationSchema = Yup.object({
 })
 
 // create a component
-const LoginAdmin= ({ navigation }) => {
-    const {setIsLoggedIn, setProfile} = useLogin();
+const AdminLogin = ({ navigation }) => {
+    const { setAdminLoggedIn, setProfile } = useLogin();
     const userInfo = {
         email: '',
         password: '',
@@ -27,12 +25,12 @@ const LoginAdmin= ({ navigation }) => {
 
     const signIn = async (values, formikAction) => {
         //console.log(values);
-        const res = await Client.post('/signIn', {
+        const res = await Client.post('/admin/signin', {
             ...values,
         });
         if (res.data.success) {
-            setProfile(res.data.employee);
-            setIsLoggedIn(true);
+            setProfile(res.data.admin);
+            setAdminLoggedIn(true);
             // navigation.dispatch(
             //     StackActions.replace('EmployeeProfile', { email: values.email })
             // );
@@ -91,4 +89,4 @@ const LoginAdmin= ({ navigation }) => {
 };
 
 //make this component available to the app
-export default LoginAdmin;
+export default AdminLogin;

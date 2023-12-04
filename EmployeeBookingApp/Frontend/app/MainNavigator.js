@@ -5,6 +5,9 @@ import AppForm from './components/employee/AppForm';
 import { useLogin } from './context/LoginProvider';
 import DrawerNavigator from './DrawerNavigator';
 import LoginForm from './components/employee/LoginForm';
+import AdminForm from './components/admin/AdminForm';
+import AdminDrawerNavigator from './AdminDrawerNavigator';
+
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
@@ -12,13 +15,18 @@ const StackNavigator = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen component={WelcomePage} name='WelcomePage' />
       <Stack.Screen component={AppForm} name='AppForm' />
-     <Stack.Screen component={LoginForm} name='LoginForm' />
+      <Stack.Screen component={LoginForm} name='LoginForm' />
+
+      <Stack.Screen component={AdminForm} name='AdminForm' />
     </Stack.Navigator>
   );
 };
 
 const MainNavigator = () => {
-  const { isLoggedIn } = useLogin();
-  return isLoggedIn ? <DrawerNavigator /> : <StackNavigator />;
+  const { isLoggedIn, adminLoggedIn } = useLogin();
+  return (
+    adminLoggedIn ? <AdminDrawerNavigator /> : isLoggedIn ? <DrawerNavigator /> : <StackNavigator />
+  );
+  //  isLoggedIn ? <AdminDrawerNavigator /> : <StackNavigator />;
 };
 export default MainNavigator;

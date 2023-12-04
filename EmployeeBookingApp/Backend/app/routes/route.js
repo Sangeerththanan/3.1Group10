@@ -10,7 +10,7 @@ module.exports = app => {
     router.post("/employers", employers.create);
 
     // Signin
-    router.post("/signin", employees.signin);
+    router.post("/employees/signin", employees.signin);
     router.post("/employers/signin", employers.signin);
     router.post("/admin/signin", admin.signin);
     

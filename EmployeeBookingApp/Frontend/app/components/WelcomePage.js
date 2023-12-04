@@ -15,7 +15,7 @@ const WelcomePage = ({navigation}) => {
     };
     const admin = async () => {
         navigation.dispatch(
-            StackActions.replace('LoginForm')
+            StackActions.replace('AdminForm')
         );
     };
     const employeer = async () => {

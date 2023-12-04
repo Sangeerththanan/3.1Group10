@@ -26,7 +26,7 @@ const LoginForm= ({ navigation }) => {
 
     const signIn = async (values, formikAction) => {
         //console.log(values);
-        const res = await Client.post('/signin', {
+        const res = await Client.post('/employees/signin', {
             ...values,
         });
         if (res.data.success) {
