@@ -4,8 +4,8 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '
 import Home from './components/Home';
 import Tasks from './components/Tasks';
 import { useLogin } from './context/LoginProvider';
-import EmployeeProfile from './components/EmployeeProfile';
-import EditProfile from './components/EditProfile';
+import EmployeeProfile from './components/employee/EmployeeProfile';
+import EditProfile from './components/employee/EditProfile';
 
 const Drawer = createDrawerNavigator();
 

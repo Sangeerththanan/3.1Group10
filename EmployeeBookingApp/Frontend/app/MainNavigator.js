@@ -1,10 +1,10 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import WelcomePage from './components/WelcomePage';
-import AppForm from './components/AppForm';
+import AppForm from './components/employee/AppForm';
 import { useLogin } from './context/LoginProvider';
 import DrawerNavigator from './DrawerNavigator';
-import LoginForm from './components/LoginForm';
+import LoginForm from './components/employee/LoginForm';
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {

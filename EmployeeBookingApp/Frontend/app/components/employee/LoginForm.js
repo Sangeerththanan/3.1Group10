@@ -1,15 +1,15 @@
 //import liraries
 import React from 'react';
 import FormContainer from './FormContainer';
-import FormInput from './FormInput';
-import FormSubmitButton from './FormSubmitButton';
+import FormInput from '../FormInput';
+import FormSubmitButton from '../FormSubmitButton';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import Client from '../api/Client';
+import Client from '../../api/Client';
 import { StackActions } from '@react-navigation/native';
-import { useLogin } from '../context/LoginProvider';
+import { useLogin } from '../../context/LoginProvider';
 
 const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email').required('Email is required!'),

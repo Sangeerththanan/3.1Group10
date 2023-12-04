@@ -1,7 +1,7 @@
 //import liraries
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Client from '../api/Client';
+import Client from '../../api/Client';
 
 // create a component
 const StatusBtn = (props) => {

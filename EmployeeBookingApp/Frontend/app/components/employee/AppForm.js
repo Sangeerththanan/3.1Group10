@@ -3,13 +3,13 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, ScrollView, StyleSheet, View, Image } from 'react-native';
 
 import FormHeader from './FormHeader';
-import FormSelectorBtn from './FormSelectorBtn';
+import FormSelectorBtn from '../FormSelectorBtn';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
 
 import axios from 'axios';
-import HomeBtn from './HomeBtn';
+import HomeBtn from '../HomeBtn';
 import { StackActions } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
@@ -47,7 +47,7 @@ const AppForm = ({ navigation }) => {
 
     const fetchApi = async () => {
         try {
-            const res = await axios.get('http://192.168.128.89:8080/')
+            const res = await axios.get('http://172.16.28.211:8080/')
             console.log(res.data)
         } catch (error) {
             console.error(error);

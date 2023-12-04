@@ -1,10 +1,10 @@
 //import libraries
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import Client from '../api/Client';
-import { useLogin } from '../context/LoginProvider';
+import Client from '../../api/Client';
+import { useLogin } from '../../context/LoginProvider';
 import StatusBtn from './StatusBtn';
-import UserTypeButton from './UserTypeButton';
+import UserTypeButton from '../UserTypeButton';
 
 // create a component
 const EmployeeProfile = ({ route, navigation }) => {
