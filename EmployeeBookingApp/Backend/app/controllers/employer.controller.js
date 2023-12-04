@@ -18,6 +18,7 @@ exports.create= (req, res) => {
         confirmPassword: req.body.confirmPassword,
         contactNo: req.body.contactNo,
         address: req.body.address,
+        type: req.body.type,
         });
 
      // Store a employer in the database
