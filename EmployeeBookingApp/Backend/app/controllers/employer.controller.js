@@ -29,6 +29,7 @@ exports.create = (req, res) => {
       //confirmPassword: req.body.confirmPassword,
       contactNo: req.body.contactNo,
       address: req.body.address,
+        
       workType: req.body.workType,
       payment: req.body.payment ? req.body.payment : 250
     });
