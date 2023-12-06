@@ -171,3 +171,18 @@ exports.updateStatus = async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+// Fetch all employee records
+exports.findAll= (req, res) => {
+  Employee.find()
+    .then(data => {
+      if (!data)
+        res.status(404).send({ message: "Not found any employee "} );
+      else res.json(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving the employeerecords"});
+    });
+};

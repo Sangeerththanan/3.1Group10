@@ -13,8 +13,8 @@ module.exports = app => {
     router.post("/employees/signin", employees.signin);
     router.post("/employers/signin", employers.signin);
     router.post("/admin/signin", admin.signin);
-    
-    
+
+
 
     // Retrieve a single employe with email
     router.get("/employees/:email", employees.findOne);
@@ -26,7 +26,9 @@ module.exports = app => {
 
     // Update employee status by email
     router.put("/employees/status/:email", employees.updateStatus);
-    
+
+    // Retrieve all employees
+    router.get("/employees", employees.findAll);
 
     app.use("/api", router);
 };

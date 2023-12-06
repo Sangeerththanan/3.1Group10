@@ -39,7 +39,7 @@ const AppForm = ({ navigation }) => {
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,1)', 'rgba(27,27,51,0.4)'],
     });
- 
+
     const signupColorInterpolate = animation.interpolate({
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,0.4)', 'rgba(27,27,51,1)'],
@@ -47,7 +47,7 @@ const AppForm = ({ navigation }) => {
 
     const fetchApi = async () => {
         try {
-            const res = await axios.get('http://192.168.43.91:8080/')
+            const res = await axios.get('http://192.168.167.91:8080/')
             console.log(res.data)
         } catch (error) {
             console.error(error);
@@ -61,12 +61,12 @@ const AppForm = ({ navigation }) => {
     const welcomePage = async () => {
         navigation.dispatch(
             StackActions.replace('WelcomePage')
-            );
+        );
     };
 
     return (
-        <View style={{ flex: 1,}}>
-        <HomeBtn onPress={welcomePage}/>
+        <View style={{ flex: 1, }}>
+            <HomeBtn onPress={welcomePage} />
             <View style={{ height: 80 }}>
                 <FormHeader
                     leftHeading='Welcome '
@@ -88,7 +88,7 @@ const AppForm = ({ navigation }) => {
                     lable='Login'
                     onPress={() => scrollview.current.scrollTo({ x: 0 })}
                 />
-             
+
                 <FormSelectorBtn
                     style={styles.borderRight}
                     backgroundColor={signupColorInterpolate}
@@ -107,7 +107,7 @@ const AppForm = ({ navigation }) => {
                 )}
             >
                 <LoginForm navigation={navigation} />
-               
+
                 <ScrollView>
                     <SignupForm navigation={navigation} />
                 </ScrollView>
