@@ -2,10 +2,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, ScrollView, StyleSheet, View, Image } from 'react-native';
 
-import FormHeader from './FormHeader';
+import FormHeader from './employee/FormHeader';
 import FormSelectorBtn from './FormSelectorBtn';
-import ELoginForm from './ELoginForm';
-import ESignupForm from './ESignupForm';
+import EmployeerLoginForm from './EmployeerLoginForm';
 
 
 import axios from 'axios';
@@ -106,10 +105,10 @@ const AppForm = ({ navigation }) => {
                     { useNativeDriver: false }
                 )}
             >
-                <ELoginForm navigation={navigation} />
-               
+                
+               <EmployeerLoginForm/>
                 <ScrollView>
-                    <ESignupForm navigation={navigation} />
+                    {/* <ESignupForm navigation={navigation} /> */}
                 </ScrollView>
             </ScrollView>
         </View>

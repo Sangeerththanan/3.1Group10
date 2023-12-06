@@ -7,6 +7,7 @@ import DrawerNavigator from './DrawerNavigator';
 import LoginForm from './components/employee/LoginForm';
 import AdminForm from './components/admin/AdminForm';
 import AdminDrawerNavigator from './AdminDrawerNavigator';
+import EmployeerAppForm from './components/EmployeerAppForm';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const StackNavigator = () => {
       <Stack.Screen component={LoginForm} name='LoginForm' />
 
       <Stack.Screen component={AdminForm} name='AdminForm' />
+      <Stack.Screen component={EmployeerAppForm} name='EmployeerAppForm' />
     </Stack.Navigator>
   );
 };
