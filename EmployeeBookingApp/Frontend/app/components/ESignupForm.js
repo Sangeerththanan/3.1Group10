@@ -1,8 +1,8 @@
 import react from 'react';
-import FormContainer from './FormContainer';
+import FormContainer from './employee/FormContainer';
 import FormInput from './FormInput';
 import FormSubmitButton from './FormSubmitButton';
-import SelectionList from './SelectionList';
+import SelectionList from './employee/SelectionList';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
