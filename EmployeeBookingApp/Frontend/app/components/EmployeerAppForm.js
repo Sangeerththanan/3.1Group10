@@ -22,8 +22,8 @@ const AppForm = ({ navigation }) => {
     const rightHeaderOpacity = animation.interpolate({
         inputRange: [0, width],
         outputRange: [1, 0],
-    })
-
+    });
+    
     const leftHeaderTranslateX = animation.interpolate({
         inputRange: [0, width],
         outputRange: [0, 40],
