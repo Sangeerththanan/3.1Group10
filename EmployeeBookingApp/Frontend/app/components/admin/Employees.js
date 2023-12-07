@@ -1,5 +1,5 @@
 // import libraries
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import Client from '../../api/Client';
 import DeleteBtn from './DeleteBtn';
@@ -8,18 +8,22 @@ import DeleteBtn from './DeleteBtn';
 const Employees = () => {
     const [employees, setEmployees] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await Client.get(`/employees/`);
-                setEmployees(response.data);
-            } catch (error) {
-                console.error('Error fetching employee data:', error);
-            }
-        };
-
-        fetchData();
+    const fetchData = useCallback(async () => {
+        try {
+            const response = await Client.get(`/employees/`);
+            setEmployees(response.data);
+        } catch (error) {
+            console.error('Error fetching employee data:', error);
+        }
     }, []);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+    const handleDeleteEmployee = useCallback(async () => {
+        await fetchData();
+    }, [fetchData]);
 
     const renderEmployeeItem = ({ item }) => (
         <View style={styles.row}>
@@ -27,7 +31,7 @@ const Employees = () => {
             <Text style={styles.column}>{item.email}</Text>
             <Text style={styles.column}>{item.workType}</Text>
             <TouchableOpacity style={styles.actionsColumn}>
-                <DeleteBtn />
+                <DeleteBtn employeeEmail={item.email} onDelete={handleDeleteEmployee}/>
             </TouchableOpacity>
         </View>
     );

@@ -30,5 +30,8 @@ module.exports = app => {
     // Retrieve all employees
     router.get("/employees", employees.findAll);
 
+    // Delete a employee with id
+    router.delete("/employees/:email", employees.delete);
+
     app.use("/api", router);
 };
