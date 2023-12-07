@@ -15,6 +15,15 @@ const EmployeeDelete = ({ employeeEmail, onDelete }) => {
             console.error('Error deleting employee:', error);
         }
     }
+    //newly added
+    catch (error) {
+        if (error.response) {
+          console.error('Error deleting employee:', error.response.status, error.response.statusText);
+        } else {
+          console.error('Error deleting employee:', error);
+        }
+      }
+      
 
     return (
         <TouchableOpacity style={styles.container}>
@@ -27,6 +36,7 @@ const EmployeeDelete = ({ employeeEmail, onDelete }) => {
         </TouchableOpacity>
     );
 };
+
 
 // define your styles
 const styles = StyleSheet.create({
