@@ -3,7 +3,6 @@ import React from 'react';
 import FormContainer from '../FormContainer';
 import FormInput from '../FormInput';
 import FormSubmitButton from '../FormSubmitButton';
-import SelectionList from './SelectionList';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -19,74 +18,31 @@ const validationSchema = Yup.object({
     confirmPassword: Yup.string().equals([Yup.ref('password'), null], 'Password does not match!'),
     contactNo: Yup.string().min(9, 'Invalid Contact No').required('Contact No is required!'),
     address: Yup.string().required('Address is required!'),
-    // workType: Yup.string().required('Work type is required!'),
-    payment: Yup.number().typeError('Payment must be a number!').required('Payment is required!'),
+    //workType: Yup.string().required('Work type is required!'),
+    payment: Yup.number().typeError('Payment must be a number!'),
 })
 
 // create a component
-const EditProfile = ({ route, navigation }) => {
-    const email = route.params.employeeData.email;
-    const [employeeData, setEmployeeData] = React.useState(route.params.employeeData);
-    console.log(employeeData);
-    const fetchEmployeeData = async () => {
-        try {
-            const response = await Client.get(`/employees/${email}`);
-            return response.data;
-        } catch (error) {
-            console.error('Error fetching employee data:', error);
-            throw error; // Rethrow the error to handle it in the calling function
-        }
-    };
-
-
-    React.useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await fetchEmployeeData();
-                setEmployeeData(data);
-            } catch (error) {
-                // Handle the error (e.g., show an error message)
-            }
-        };
-        fetchData();
-    }, [email]);
-
+const EmployerSignupForm = ({ navigation }) => {
     const [selectedWorkType, setSelectedWorkType] = React.useState('');
     const userInfo = {
-        name: employeeData?.name || '',
-        email: employeeData?.email || '',
+        name: '',
+        email: '',
         password: '',
         confirmPassword: '',
-        contactNo: employeeData?.contactNo || '',
-        address: employeeData?.address || '',
+        contactNo: '',
+        address: '',
         workType: '',
         payment: undefined,
     }
-    
-    const update = async (values, formikAction) => {
+
+    const signUp = async (values, formikAction) => {
         const paymentValue = parseFloat(values.payment);
-        const res = await Client.put(`/employees/${employeeData.email}`, {
+        const res = await Client.post('/employers', {
             ...values,
             payment: paymentValue, // Send the parsed number, not the string
             workType: selectedWorkType // Include the selected work type in the data
         });
-
-        const updatedData = await Client.get(`/employees/${values.email}`);
-        console.log('Fetched Data:', updatedData.data);
-        
-        // Extract only the necessary and serializable information
-        const serializableData = {
-            name: updatedData.data.name,
-            workType: updatedData.data.workType,
-            email: updatedData.data.email,
-            contactNo: updatedData.data.contactNo,
-            address: updatedData.data.address,
-            payment: updatedData.data.payment
-        };
-
-        if (res.data.success) {
-            navigation.navigate('Profile', { updatedData: serializableData });
-        }
 
         // if (res.data.success) {
         //     navigation.dispatch(
@@ -95,7 +51,7 @@ const EditProfile = ({ route, navigation }) => {
         // }
 
         //console.log({ ...values, payment: paymentValue });
-        //console.log(res.data);
+        console.log(res.data);
         formikAction.resetForm();
         formikAction.setSubmitting(false);
     };
@@ -106,7 +62,7 @@ const EditProfile = ({ route, navigation }) => {
                 <Formik
                     initialValues={userInfo}
                     validationSchema={validationSchema}
-                    onSubmit={update}
+                    onSubmit={signUp}
                 >
                     {({
                         values,
@@ -176,26 +132,10 @@ const EditProfile = ({ route, navigation }) => {
                                     onBlur={handleBlur('address')}
 
                                 />
-                                <SelectionList
-                                    value={workType}
-                                    lable='Work type'
-                                    error={touched.workType && errors.workType}
-                                    onSelectionChange={(selectedValue) => setSelectedWorkType(selectedValue)}
-                                />
-                                <FormInput
-                                    value={payment}
-                                    error={touched.payment && errors.payment}
-                                    autoCapitalize='none'
-                                    lable='Payment'
-                                    placeholder='Rs.250'
-                                    onChangeText={handleChange('payment')}
-                                    onBlur={handleBlur('payment')}
-
-                                />
                                 <FormSubmitButton
                                     submitting={isSubmitting}
                                     onPress={handleSubmit}
-                                    lable='Update'
+                                    lable='Sign up'
                                 />
                             </>
                         );
@@ -208,4 +148,4 @@ const EditProfile = ({ route, navigation }) => {
 };
 
 //make this component available to the app
-export default EditProfile;
+export default EmployerSignupForm;

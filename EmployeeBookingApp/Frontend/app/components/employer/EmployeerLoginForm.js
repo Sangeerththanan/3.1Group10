@@ -1,15 +1,15 @@
 //import liraries
 import React from 'react';
-import FormContainer from './employee/FormContainer';
-import FormInput from '../components/FormInput';
-import FormSubmitButton from '../components/FormSubmitButton';
+import FormContainer from '../FormContainer';
+import FormInput from '../FormInput';
+import FormSubmitButton from '../FormSubmitButton';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import Client from '../api/Client';
+import Client from '../../api/Client';
 import { StackActions } from '@react-navigation/native';
-import { useLogin } from '../context/LoginProvider';
+import { useLogin } from '../../context/LoginProvider';
 
 const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email').required('Email is required!'),
@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
 
 // create a component
 const EmployeerLoginForm= ({ navigation }) => {
-    const {setIsLoggedIn, setProfile} = useLogin();
+    const {setEmployerLoggedIn, setProfile} = useLogin();
     const userInfo = {
         email: '',
         password: '',
@@ -30,8 +30,8 @@ const EmployeerLoginForm= ({ navigation }) => {
             ...values,
         });
         if (res.data.success) {
-            setProfile(res.data.employee);
-            setIsLoggedIn(true);
+            setProfile(res.data.employeer);
+            setEmployerLoggedIn(true);
             // navigation.dispatch(
             //     StackActions.replace('EmployeeProfile', { email: values.email })
             // );

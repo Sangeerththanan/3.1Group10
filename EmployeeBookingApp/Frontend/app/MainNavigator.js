@@ -7,7 +7,8 @@ import DrawerNavigator from './DrawerNavigator';
 import LoginForm from './components/employee/LoginForm';
 import AdminForm from './components/admin/AdminForm';
 import AdminDrawerNavigator from './AdminDrawerNavigator';
-import EmployeerAppForm from './components/EmployeerAppForm';
+import EmployeerAppForm from './components/employer/EmployeerAppForm';
+import EmployerDrawerNavigator from './employerDrawerNavigator';
 
 const Stack = createStackNavigator();
 
@@ -25,9 +26,9 @@ const StackNavigator = () => {
 };
 
 const MainNavigator = () => {
-  const { isLoggedIn, adminLoggedIn } = useLogin();
+  const { isLoggedIn, adminLoggedIn, employerLoggedIn } = useLogin();
   return (
-    adminLoggedIn ? <AdminDrawerNavigator /> : isLoggedIn ? <DrawerNavigator /> : <StackNavigator />
+    adminLoggedIn ? <AdminDrawerNavigator /> : isLoggedIn ? <DrawerNavigator /> : employerLoggedIn ? <EmployerDrawerNavigator /> : <StackNavigator />
   );
   //  isLoggedIn ? <AdminDrawerNavigator /> : <StackNavigator />;
 };
