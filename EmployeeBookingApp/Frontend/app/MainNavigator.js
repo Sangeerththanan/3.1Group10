@@ -8,7 +8,7 @@ import LoginForm from './components/employee/LoginForm';
 import AdminForm from './components/admin/AdminForm';
 import AdminDrawerNavigator from './AdminDrawerNavigator';
 import EmployeerAppForm from './components/employer/EmployeerAppForm';
-import EmployerDrawerNavigator from './employerDrawerNavigator';
+import EmployerDrawerNavigator from './EmployerDrawerNavigator';
 
 const Stack = createStackNavigator();
 

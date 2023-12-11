@@ -71,7 +71,7 @@ const EmployerAppForm = ({ navigation }) => {
                 <FormHeader
                     leftHeading='Welcome '
                     rightHeading='Back'
-                    subHeading='Employeer'
+                    subHeading='Employer'
                     rightHeaderOpacity={rightHeaderOpacity}
                     leftHeaderTranslateX={leftHeaderTranslateX}
                     rightHeaderTranslateY={rightHeaderTranslateY}

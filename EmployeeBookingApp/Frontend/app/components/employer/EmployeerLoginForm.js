@@ -30,7 +30,7 @@ const EmployeerLoginForm= ({ navigation }) => {
             ...values,
         });
         if (res.data.success) {
-            setProfile(res.data.employeer);
+            setProfile(res.data.employer);
             setEmployerLoggedIn(true);
             // navigation.dispatch(
             //     StackActions.replace('EmployeeProfile', { email: values.email })

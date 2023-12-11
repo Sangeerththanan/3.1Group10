@@ -34,7 +34,7 @@ const EmployerProfile = ({ route, navigation }) => {
     }, [email, updatedData]); // Include email in the dependency array to fetch data when email changes , // Include email and updatedData in the dependency array
 
     const editProfile = () => {
-        navigation.navigate('Edit Profile', { employerData });
+        // navigation.navigate('Edit Profile', { employerData });
     };
 
     return (
@@ -47,14 +47,12 @@ const EmployerProfile = ({ route, navigation }) => {
                     />
                     <Text style={{ fontSize: 35 }}>{`${employerData.name}`}</Text>
                     <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginVertical: 10 }} />
-                    <Text style={styles.text}>{`Work Type: ${employerData.workType}`}</Text>
                     <Text style={styles.text}>{`Email: ${employerData.email}`}</Text>
                     <Text style={styles.text}>{`Contact No: ${employerData.contactNo}`}</Text>
                     <Text style={styles.text}>{`Address: ${employerData.address}`}</Text>
-                    <Text style={[styles.text, { marginBottom: 20 }]}>{`Payment: ${employerData.payment}`}</Text>
                     <UserTypeButton
                         lable='Edit'
-                        onPress={editProfile}
+                        // onPress={editProfile}
                     />
                 </View>
             ) : (

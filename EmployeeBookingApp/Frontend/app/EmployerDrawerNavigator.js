@@ -4,7 +4,7 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '
 import Home from './components/Home';
 import Tasks from './components/Tasks';
 import { useLogin } from './context/LoginProvider';
-import EmployerProfile from './components/employer/EmployeerProfile';
+import EmployerProfile from './components/employer/EmployerProfile';
 
 const Drawer = createDrawerNavigator();
 
@@ -52,7 +52,7 @@ const CustomDrawer = (props) => {
 const EmployerDrawerNavigator = () => {
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />} >
-    <Drawer.Screen component={EmployerProfile} name='Profile' />
+      <Drawer.Screen component={EmployerProfile} name='Profile' />
       <Drawer.Screen component={Home} name='Home' />
       <Drawer.Screen component={Tasks} name='Tasks' />
     </Drawer.Navigator>

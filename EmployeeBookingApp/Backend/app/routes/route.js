@@ -20,7 +20,7 @@ module.exports = app => {
 
     // Retrieve a single employe with email
     router.get("/employees/:email", employees.findOne);
-    //router.get("/employers/:email", employers.findOne);
+    router.get("/employers/:email", employers.findOne);
 
     // Update a journal with id
     router.put("/employees/:email", employees.update);
