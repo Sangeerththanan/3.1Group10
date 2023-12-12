@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
     contactNo: Yup.string().min(9, 'Invalid Contact No').required('Contact No is required!'),
     address: Yup.string().required('Address is required!'),
     //workType: Yup.string().required('Work type is required!'),
-    payment: Yup.number().typeError('Payment must be a number!'),
+    //payment: Yup.number().typeError('Payment must be a number!'),
 })
 
 // create a component
@@ -32,8 +32,8 @@ const EmployerSignupForm = ({ navigation }) => {
         confirmPassword: '',
         contactNo: '',
         address: '',
-        workType: '',
-        payment: undefined,
+        
+    
     }
 
     const signUp = async (values, formikAction) => {
@@ -73,7 +73,7 @@ const EmployerSignupForm = ({ navigation }) => {
                         handleBlur,
                         handleSubmit
                     }) => {
-                        const { name, email, password, confirmPassword, contactNo, address, workType, payment } = values
+                        const { name, email, password, confirmPassword, contactNo, address } = values
                         return (
                             <>
                                 <FormInput
