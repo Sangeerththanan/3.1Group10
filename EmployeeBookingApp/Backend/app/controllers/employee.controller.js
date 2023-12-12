@@ -171,3 +171,40 @@ exports.updateStatus = async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+// Fetch all employee records
+exports.findAll= (req, res) => {
+  Employee.find()
+    .then(data => {
+      if (!data)
+        res.status(404).send({ message: "Not found any employee "} );
+      else res.json(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving the employeerecords"});
+    });
+};
+
+// Delete a employee record by registration number
+exports.delete = (req, res) => {
+  const {email}  = req.params;
+
+    Employee.findOneAndDelete({email}, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: "Cannot delete stuedent with email=${{ email } }. Maybe employee was not found!"
+        });
+      } else {
+        res.send({
+          message: "Employee record was deleted successfully!"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete employee with { email } =" + email });
+    });
+};

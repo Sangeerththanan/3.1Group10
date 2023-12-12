@@ -3,13 +3,13 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, ScrollView, StyleSheet, View, Image } from 'react-native';
 
 import FormHeader from './FormHeader';
-import FormSelectorBtn from './FormSelectorBtn';
-import ELoginForm from './ELoginForm';
-import ESignupForm from './ESignupForm';
+import FormSelectorBtn from '../FormSelectorBtn';
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 
 
 import axios from 'axios';
-import HomeBtn from './HomeBtn';
+import HomeBtn from '../HomeBtn';
 import { StackActions } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
@@ -39,7 +39,7 @@ const AppForm = ({ navigation }) => {
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,1)', 'rgba(27,27,51,0.4)'],
     });
- 
+
     const signupColorInterpolate = animation.interpolate({
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,0.4)', 'rgba(27,27,51,1)'],
@@ -47,7 +47,7 @@ const AppForm = ({ navigation }) => {
 
     const fetchApi = async () => {
         try {
-            const res = await axios.get('http://192.168.1.10:8080/')
+            const res = await axios.get('http://192.168.8.102:8080/')
             console.log(res.data)
         } catch (error) {
             console.error(error);
@@ -61,17 +61,17 @@ const AppForm = ({ navigation }) => {
     const welcomePage = async () => {
         navigation.dispatch(
             StackActions.replace('WelcomePage')
-            );
+        );
     };
 
     return (
-        <View style={{ flex: 1,}}>
-        <HomeBtn onPress={welcomePage}/>
+        <View style={{ flex: 1, }}>
+            <HomeBtn onPress={welcomePage} />
             <View style={{ height: 80 }}>
                 <FormHeader
                     leftHeading='Welcome '
                     rightHeading='Back'
-                    subHeading='Employeer'
+                    subHeading='Employee'
                     rightHeaderOpacity={rightHeaderOpacity}
                     leftHeaderTranslateX={leftHeaderTranslateX}
                     rightHeaderTranslateY={rightHeaderTranslateY}
@@ -88,7 +88,7 @@ const AppForm = ({ navigation }) => {
                     lable='Login'
                     onPress={() => scrollview.current.scrollTo({ x: 0 })}
                 />
-             
+
                 <FormSelectorBtn
                     style={styles.borderRight}
                     backgroundColor={signupColorInterpolate}
@@ -106,10 +106,10 @@ const AppForm = ({ navigation }) => {
                     { useNativeDriver: false }
                 )}
             >
-                <ELoginForm navigation={navigation} />
-               
+                <LoginForm navigation={navigation} />
+
                 <ScrollView>
-                    <ESignupForm navigation={navigation} />
+                    <SignupForm navigation={navigation} />
                 </ScrollView>
             </ScrollView>
         </View>

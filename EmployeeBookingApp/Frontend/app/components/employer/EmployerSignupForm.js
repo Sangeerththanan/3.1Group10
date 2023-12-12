@@ -1,14 +1,13 @@
 //import liraries
 import React from 'react';
-import FormContainer from './FormContainer';
-import FormInput from './FormInput';
-import FormSubmitButton from './FormSubmitButton';
-import SelectionList from './SelectionList';
+import FormContainer from '../FormContainer';
+import FormInput from '../FormInput';
+import FormSubmitButton from '../FormSubmitButton';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import Client from '../api/Client';
+import Client from '../../api/Client';
 import { StackActions } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -24,7 +23,7 @@ const validationSchema = Yup.object({
 })
 
 // create a component
-const SignupForm = ({ navigation }) => {
+const EmployerSignupForm = ({ navigation }) => {
     const [selectedWorkType, setSelectedWorkType] = React.useState('');
     const userInfo = {
         name: '',
@@ -39,7 +38,7 @@ const SignupForm = ({ navigation }) => {
 
     const signUp = async (values, formikAction) => {
         const paymentValue = parseFloat(values.payment);
-        const res = await Client.post('/employees', {
+        const res = await Client.post('/employers', {
             ...values,
             payment: paymentValue, // Send the parsed number, not the string
             workType: selectedWorkType // Include the selected work type in the data
@@ -133,22 +132,6 @@ const SignupForm = ({ navigation }) => {
                                     onBlur={handleBlur('address')}
 
                                 />
-                                <SelectionList
-                                    value={workType}
-                                    lable='Work type'
-                                    error={touched.workType && errors.workType}
-                                    onSelectionChange={(selectedValue) => setSelectedWorkType(selectedValue)}
-                                />
-                                <FormInput
-                                    value={payment}
-                                    error={touched.payment && errors.payment}
-                                    autoCapitalize='none'
-                                    lable='Payment'
-                                    placeholder='Rs.250'
-                                    onChangeText={handleChange('payment')}
-                                    onBlur={handleBlur('payment')}
-
-                                />
                                 <FormSubmitButton
                                     submitting={isSubmitting}
                                     onPress={handleSubmit}
@@ -165,4 +148,4 @@ const SignupForm = ({ navigation }) => {
 };
 
 //make this component available to the app
-export default SignupForm;
+export default EmployerSignupForm;

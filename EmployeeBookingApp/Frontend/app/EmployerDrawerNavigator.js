@@ -4,13 +4,12 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '
 import Home from './components/Home';
 import Tasks from './components/Tasks';
 import { useLogin } from './context/LoginProvider';
-import EmployeeProfile from './components/employee/EmployeeProfile';
-import EditProfile from './components/employee/EditProfile';
+import EmployerProfile from './components/employer/EmployerProfile';
 
 const Drawer = createDrawerNavigator();
 
 const CustomDrawer = (props) => {
-  const { setIsLoggedIn, profile } = useLogin();
+  const { setEmployerLoggedIn, profile } = useLogin();
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -24,10 +23,10 @@ const CustomDrawer = (props) => {
             marginBottom: 20,
           }}>
           <View>
-          <Image
-            source={{ uri: 'https://images.unsplash.com/photo-1624243225303-261cc3cd2fbc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' }}
-            style={{ width: 60, height: 60, borderRadius: 30 }}
-          />
+            <Image
+              source={{ uri: 'https://images.unsplash.com/photo-1624243225303-261cc3cd2fbc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' }}
+              style={{ width: 60, height: 60, borderRadius: 30 }}
+            />
             <Text>{profile.name}</Text>
             <Text>{profile.email}</Text>
           </View>
@@ -43,22 +42,21 @@ const CustomDrawer = (props) => {
           backgroundColor: '#f6f6f6',
           padding: 20,
         }}
-        onPress={() => setIsLoggedIn(false)}
+        onPress={() => setEmployerLoggedIn(false)}
       >
         <Text>Log Out</Text>
       </TouchableOpacity>
     </View>
   );
 }
-const DrawerNavigator = () => {
+const EmployerDrawerNavigator = () => {
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />} >
-      <Drawer.Screen component={EmployeeProfile} name='Profile' />
+      <Drawer.Screen component={EmployerProfile} name='Profile' />
       <Drawer.Screen component={Home} name='Home' />
       <Drawer.Screen component={Tasks} name='Tasks' />
-      <Drawer.Screen component={EditProfile} name='Edit Profile' />
     </Drawer.Navigator>
   );
 };
 
-export default DrawerNavigator;
+export default EmployerDrawerNavigator;
