@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Tasks from './components/Tasks';
 import { useLogin } from './context/LoginProvider';
 import EmployerProfile from './components/employer/EmployerProfile';
+import EmployeeComplain from './components/employer/EmployeeComplain';
 
 const Drawer = createDrawerNavigator();
 
