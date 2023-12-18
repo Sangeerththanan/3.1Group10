@@ -2,20 +2,21 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, ScrollView, StyleSheet, View, Image } from 'react-native';
 
-import FormHeader from './employee/FormHeader';
-import FormSelectorBtn from './FormSelectorBtn';
+import FormHeader from '../employee/FormHeader';
+import FormSelectorBtn from '../FormSelectorBtn';
 import EmployeerLoginForm from './EmployeerLoginForm';
 
 
 import axios from 'axios';
-import HomeBtn from './HomeBtn';
+import HomeBtn from '../HomeBtn';
 import { StackActions } from '@react-navigation/native';
+import EmployerSignupForm from './EmployerSignupForm';
 
 const { width } = Dimensions.get('window');
 
 
 // create a component
-const AppForm = ({ navigation }) => {
+const EmployerAppForm = ({ navigation }) => {
     const animation = useRef(new Animated.Value(0)).current;
     const scrollview = useRef();
 
@@ -46,7 +47,7 @@ const AppForm = ({ navigation }) => {
 
     const fetchApi = async () => {
         try {
-            const res = await axios.get('http://192.168.1.10:8080/')
+            const res = await axios.get('http://172.16.193.102:8080/')
             console.log(res.data)
         } catch (error) {
             console.error(error);
@@ -70,7 +71,7 @@ const AppForm = ({ navigation }) => {
                 <FormHeader
                     leftHeading='Welcome '
                     rightHeading='Back'
-                    subHeading='Employeer'
+                    subHeading='Employer'
                     rightHeaderOpacity={rightHeaderOpacity}
                     leftHeaderTranslateX={leftHeaderTranslateX}
                     rightHeaderTranslateY={rightHeaderTranslateY}
@@ -108,7 +109,7 @@ const AppForm = ({ navigation }) => {
                 
                <EmployeerLoginForm/>
                 <ScrollView>
-                    {/* <ESignupForm navigation={navigation} /> */}
+                    <EmployerSignupForm/>
                 </ScrollView>
             </ScrollView>
         </View>
@@ -134,4 +135,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default AppForm;
+export default EmployerAppForm;

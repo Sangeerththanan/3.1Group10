@@ -4,13 +4,13 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '
 import Home from './components/Home';
 import Tasks from './components/Tasks';
 import { useLogin } from './context/LoginProvider';
-import Employees from './components/admin/Employees';
-import Complains from './components/admin/Complains';
+import EmployerProfile from './components/employer/EmployerProfile';
+import EmployeeComplain from './components/employer/EmployeeComplain';
 
 const Drawer = createDrawerNavigator();
 
 const CustomDrawer = (props) => {
-  const { setAdminLoggedIn, profile } = useLogin();
+  const { setEmployerLoggedIn, profile } = useLogin();
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -43,22 +43,22 @@ const CustomDrawer = (props) => {
           backgroundColor: '#f6f6f6',
           padding: 20,
         }}
-        onPress={() => setAdminLoggedIn(false)}
+        onPress={() => setEmployerLoggedIn(false)}
       >
         <Text>Log Out</Text>
       </TouchableOpacity>
     </View>
   );
 }
-const DrawerNavigator = () => {
+const EmployerDrawerNavigator = () => {
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />} >
+      <Drawer.Screen component={EmployerProfile} name='Profile' />
+      <Drawer.Screen component={EmployerComplain} name='Complain' />
       <Drawer.Screen component={Home} name='Home' />
       <Drawer.Screen component={Tasks} name='Tasks' />
-      <Drawer.Screen component={Employees} name='Employees' />
-      <Drawer.Screen component={Complains} name='Complains' />
     </Drawer.Navigator>
   );
 };
 
-export default DrawerNavigator;
+export default EmployerDrawerNavigator;

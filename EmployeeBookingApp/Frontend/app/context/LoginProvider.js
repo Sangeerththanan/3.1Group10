@@ -7,9 +7,10 @@ const LoginProvider = ({ children }) => {
     const [profile, setProfile] = useState({});
 
     const [adminLoggedIn, setAdminLoggedIn] = useState(false);
+    const [employerLoggedIn,setEmployerLoggedIn] = useState(false);
 
     return (
-        <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn, profile, setProfile, adminLoggedIn, setAdminLoggedIn }}>
+        <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn, profile, setProfile, adminLoggedIn, setAdminLoggedIn, employerLoggedIn, setEmployerLoggedIn }}>
             {children}
         </LoginContext.Provider>
     );
