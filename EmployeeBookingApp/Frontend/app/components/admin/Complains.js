@@ -11,6 +11,7 @@ const Complains = () => {
         try {
             const response = await Client.get(`/complains/`);
             setComplains(response.data);
+            console.log(response.data);
         } catch (error) {
             console.error('Error fetching Complains data:', error);
         }
@@ -22,14 +23,18 @@ const Complains = () => {
 
     const renderComplainItem = ({ item }) => (
         <View style={styles.row}>
-            <Text style={styles.complainText}>{item.complain}</Text>
+            <Text style={styles.column}>{item.email}</Text>
+            <Text style={styles.column}>{item.title}</Text>
+            <Text style={styles.column}>{item.details}</Text>
         </View>
     );
 
     return (
         <View style={styles.container}>
             <View style={styles.headerRow}>
-                <Text style={styles.headerColumn}>Complains</Text>
+                <Text style={styles.headerColumn}>Employee</Text>
+                <Text style={styles.headerColumn}>Title</Text>
+                <Text style={styles.headerColumn}>Details</Text>
             </View>
             <FlatList
                 data={complains}
@@ -44,28 +49,38 @@ const Complains = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#ffffff', // Set a background color (white in this case)
-        paddingHorizontal: 16, // Add padding on the left and right
-    },
-    headerRow: {
-        backgroundColor: '#3498db', // Set a header background color
-        paddingVertical: 10, // Add vertical padding
-        marginBottom: 10, // Add margin at the bottom
-    },
-    headerColumn: {
-        fontSize: 24,
-        color: '#ffffff', // Set header text color
+        backgroundColor: '#f2f2f2',
     },
     row: {
-        padding: 16, // Add padding for each complain row
+        flexDirection: 'row',
+        paddingVertical: 16,
         borderBottomWidth: 1,
-        borderBottomColor: '#ecf0f1', // Add a light border color
+        borderBottomColor: '#e0e0e0',
     },
-    complainText: {
+    headerRow: {
+        flexDirection: 'row',
+        paddingVertical: 16,
+        borderBottomWidth: 2,
+        borderBottomColor: '#2196f3',
+        backgroundColor: '#ffffff',
+    },
+    column: {
+        flex: 1,
         fontSize: 16,
-        color: '#2c3e50', // Set text color for complains
+        paddingHorizontal: 12,
+        color: '#333333',
+    },
+    headerColumn: {
+        flex: 1,
+        fontSize: 16,
+        paddingHorizontal: 12,
+        color: '#2196f3',
+        fontWeight: 'bold',
+    },
+    actionsColumn: {
+        paddingHorizontal: 12,
+        justifyContent: 'center',
+        alignItems: 'flex-end',
     },
 });
 

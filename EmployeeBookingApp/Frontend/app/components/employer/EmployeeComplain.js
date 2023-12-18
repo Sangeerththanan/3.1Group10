@@ -11,14 +11,44 @@ import * as Yup from 'yup';
 import Client from '../../api/Client';
 import { useLogin } from '../../context/LoginProvider';
 import Multiline from '../Multiline';
+
+const validationSchema = Yup.object({
+    email: Yup.string().email('Invalid email').required('Email is required!'),
+    title: Yup.string().required('Title is required!'),
+    details: Yup.string().required('Details is required!'),
+})
+
 // create a component
 const EmployeeComplain = () => {
+    const complainInfo = {
+        email: '',
+        title: '',
+        details: '',
+    }
+
+    const submit = async (values, formikAction) => {
+        const res = await Client.post('/complains', {
+            ...values,
+        });
+
+        // if (res.data.success) {
+        //     navigation.dispatch(
+        //         StackActions.replace('EmployeeProfile')
+        //     );
+        // }
+
+        //console.log({ ...values, payment: paymentValue });
+        console.log(res.data);
+        formikAction.resetForm();
+        formikAction.setSubmitting(false);
+    };
+
     return (
         <FormContainer align="center">
             <Formik
-            // initialValues={userInfo}
-            // validationSchema={validationSchema}
-            // onSubmit={signIn}
+                initialValues={complainInfo}
+                validationSchema={validationSchema}
+                onSubmit={submit}
             >
                 {({
                     values,
@@ -28,26 +58,29 @@ const EmployeeComplain = () => {
                     handleChange,
                     handleSubmit,
                 }) => {
-                    {/* const { email, password } = values */ }
+                    const { email, title, details } = values
                     return (
                         <>
                             <FormInput
-                                // value={email}
-                                // error={touched.email && errors.email}
-                                // onChangeText={handleChange('email')}
+                                value={email}
+                                error={touched.email && errors.email}
+                                onChangeText={handleChange('email')}
                                 lable='Employee Email'
                                 placeholder='example@gmail.com'
                                 autoCapitalize='none'
                             />
                             <FormInput
-                                // value={password}
-                                // error={touched.password && errors.password}
-                                // onChangeText={handleChange('password')}
+                                value={title}
+                                error={touched.title && errors.title}
+                                onChangeText={handleChange('title')}
                                 lable='Complain Title'
                                 placeholder='Enter a short title for your complain'
                                 autoCapitalize='none'
                             />
                             <Multiline
+                                value={details}
+                                error={touched.details && errors.details}
+                                onChangeText={handleChange('details')}
                                 label="Complain Details"
                                 placeholder="Describe your complain in detail..."
                                 multiline={true}
@@ -56,8 +89,8 @@ const EmployeeComplain = () => {
 
                             <FormSubmitButton
                                 lable='Submit'
-                            // submitting={isSubmitting}
-                            // onPress={handleSubmit}
+                                submitting={isSubmitting}
+                                onPress={handleSubmit}
                             />
                         </>
                     );
