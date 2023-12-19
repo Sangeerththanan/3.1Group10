@@ -3,6 +3,7 @@ module.exports = app => {
     const employers = require('../controllers/employer.controller.js');
     const admin = require('../controllers/admin.controller.js');
     const complains = require('../controllers/complain.controller.js');
+    const addItems =require('../controllers/addItems.controller.js')
     const express = require('express');
     const router = express.Router();
 
@@ -10,7 +11,7 @@ module.exports = app => {
     router.post("/employees", employees.create);
     router.post("/employers", employers.create);
     router.post("/complains", complains.create);
-
+    router.post("/addItems",addItems.create);
     // Signin
     router.post("/employees/signin", employees.signin);
     router.post("/employers/signin", employers.signin);
@@ -32,7 +33,7 @@ module.exports = app => {
     // Retrieve all employees
     router.get("/employees", employees.findAll);
     router.get("/complains",complains.findAll);
-
+    router.get("/addItems",addItems.findAll);
     // Delete a employee with id
     router.delete("/employees/:email", employees.delete);
 
