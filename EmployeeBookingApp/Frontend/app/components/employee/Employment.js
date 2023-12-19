@@ -5,7 +5,7 @@ import Client from '../../api/Client';
 import { useLogin } from '../../context/LoginProvider';
 import StatusBtn from './StatusBtn';
 import { useFocusEffect } from '@react-navigation/native'; // Import useFocusEffect
-import EditBtn from './EditBtn';
+import EditBtn from './StatusBtn';
 
 // create a component
 const Employment = () => {
