@@ -6,6 +6,7 @@ import Tasks from './components/Tasks';
 import { useLogin } from './context/LoginProvider';
 import EmployeeProfile from './components/employee/EmployeeProfile';
 import EditProfile from './components/employee/EditProfile';
+import Employment from './components/employee/Employment';
 
 const Drawer = createDrawerNavigator();
 
@@ -57,6 +58,7 @@ const DrawerNavigator = () => {
       <Drawer.Screen component={Home} name='Home' />
       <Drawer.Screen component={Tasks} name='Tasks' />
       <Drawer.Screen component={EditProfile} name='Edit Profile' />
+      <Drawer.Screen component={Employment} name='Employment' />
     </Drawer.Navigator>
   );
 };

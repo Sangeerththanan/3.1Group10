@@ -55,7 +55,6 @@ const EmployerDrawerNavigator = () => {
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />} >
       <Drawer.Screen component={EmployerProfile} name='Profile' />
-      <Drawer.Screen component={Employment} name='Employment' />
       <Drawer.Screen component={EmployeeComplain} name='Complain' />
       <Drawer.Screen component={Home} name='Home' />
       <Drawer.Screen component={Tasks} name='Tasks' />
