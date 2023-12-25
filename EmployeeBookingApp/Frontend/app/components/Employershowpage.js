@@ -4,6 +4,7 @@ import Client from '../api/Client';
 import { useLogin } from '../context/LoginProvider';
 import UserTypeButton from './UserTypeButton';
 
+
 const Home = ({ route, navigation }) => {
   const { updatedData } = route.params ?? {};
   //console.log('updatedData:'updatedData);
