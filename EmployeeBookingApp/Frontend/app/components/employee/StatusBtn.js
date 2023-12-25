@@ -20,18 +20,21 @@ const StatusBtn = (props) => {
         try {
             // Update the status in the database
             const newStatus = status === 'Available' ? 'Busy' : 'Available';
-            await Client.put(`/employees/status/${props.employee.email}`, { status: newStatus });
+            await Client.put('/employees/status/${props.employee.email}', { status: newStatus });
         } catch (error) {
             console.error('Error updating status:', error);
         }
     }
 
     return (
-        <TouchableOpacity style={[styles.container, { backgroundColor: statusColor, }]}>
+        <TouchableOpacity
+            style={[styles.container, { backgroundColor: statusColor, }]}
+            onPress={handleStatus}
+            disabled={props.disablePress}
+        >
             <Text
-                onPress={handleStatus}
                 style={{ fontSize: 18, color: '#fff', padding: 10 }}
-            >
+>
                 {status}
             </Text>
         </TouchableOpacity>
@@ -50,4 +53,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default StatusBtn;
+export default StatusBtn;

@@ -6,7 +6,8 @@ import Tasks from './components/Tasks';
 import { useLogin } from './context/LoginProvider';
 import Employees from './components/admin/Employees';
 import Complains from './components/admin/Complains';
-
+import AddItems from './components/admin/AddItems';
+import ViewItems from './components/admin/ViewItem';
 const Drawer = createDrawerNavigator();
 
 const CustomDrawer = (props) => {
@@ -53,10 +54,11 @@ const CustomDrawer = (props) => {
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />} >
-      <Drawer.Screen component={Home} name='Home' />
-      <Drawer.Screen component={Tasks} name='Tasks' />
+      
       <Drawer.Screen component={Employees} name='Employees' />
       <Drawer.Screen component={Complains} name='Complains' />
+      <Drawer.Screen component={AddItems} name='AddItems' />
+      <Drawer.Screen component={ViewItems} name='ViewItems' />
     </Drawer.Navigator>
   );
 };

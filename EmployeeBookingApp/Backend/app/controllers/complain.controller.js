@@ -5,15 +5,17 @@ const Complain = db.Complain;
 
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.complain ) {
+  if (!req.body.email || !req.body.title || !req.body.details ) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
     // Create a complain
     const complain = new Complain({
-      complain: req.body.complain
-      ,
+      email: req.body.email,
+      title: req.body.title,
+      details: req.body.details,
+
     });
 
     // Store a complain in the database

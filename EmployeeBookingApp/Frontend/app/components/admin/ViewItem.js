@@ -1,19 +1,16 @@
-//import liraries
+import { View, StyleSheet, Text,FlatList } from 'react-native';
 import React, { Component, useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet,FlatList } from 'react-native';
 import Client from '../../api/Client';
-
-// create a component
-const Complains = () => {
-    const [complains, setComplains] = useState(null);
-
+import { TouchableOpacity } from 'react-native';
+const ViewItems = () => {
+    const [items,setItems]=useState();
+    
     const fetchData = useCallback(async () => {
         try {
-            const response = await Client.get(`/complains/`);
-            setComplains(response.data);
-            console.log(response.data);
+            const response = await Client.get(`/employees/`);
+            setItems(response.data);
         } catch (error) {
-            console.error('Error fetching Complains data:', error);
+            console.error('Error fetching item data:', error);
         }
     }, []);
 
@@ -21,31 +18,37 @@ const Complains = () => {
         fetchData();
     }, [fetchData]);
 
-    const renderComplainItem = ({ item }) => (
+    const handleDeleteItem = useCallback(async () => {
+        await fetchData();
+    }, [fetchData]);
+
+    const renderItem = ({ item }) => (
         <View style={styles.row}>
-            <Text style={styles.column}>{item.email}</Text>
-            <Text style={styles.column}>{item.title}</Text>
-            <Text style={styles.column}>{item.details}</Text>
+            <Text style={styles.column}>{item.name1}</Text>
+            <Text style={styles.column}>{item.name2}</Text>
+            <Text style={styles.column}>{item.name3}</Text>
+            <TouchableOpacity style={styles.actionsColumn}>
+            </TouchableOpacity>
         </View>
     );
-
     return (
-        <View style={styles.container}>
+      <View style={styles.container}>
             <View style={styles.headerRow}>
-                <Text style={styles.headerColumn}>Employee</Text>
-                <Text style={styles.headerColumn}>Title</Text>
-                <Text style={styles.headerColumn}>Details</Text>
+                <Text style={styles.headerColumn}>type</Text>
+                <Text style={styles.headerColumn}>item</Text>
+                <Text style={styles.headerColumn}>cost</Text>
+                
             </View>
             <FlatList
-                data={complains}
+                data={items}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={renderComplainItem}
+                renderItem={renderItem}
             />
         </View>
     );
+    
 };
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -84,5 +87,6 @@ const styles = StyleSheet.create({
     },
 });
 
-// make this component available to the app
-export default Complains;
+export default ViewItems;
+
+

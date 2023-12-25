@@ -1,14 +1,14 @@
 //import libraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import {Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Client from '../../api/Client';
 
 // create a component
-const EmployeeDelete = ({ employeeEmail, onDelete }) => {
+const EmployerDelete = ({ employerEmail, onDelete }) => {
     async function handleDelete() {
-        console.log({ employeeEmail })
+        console.log({ employerEmail })
         try {
-            await Client.delete(`/employees/${ employeeEmail }`);
+            await Client.delete(`/employers/${ employerEmail }`);
             // Call the onDelete callback after successful deletion
             onDelete();
         } catch (error) {
@@ -16,11 +16,11 @@ const EmployeeDelete = ({ employeeEmail, onDelete }) => {
         }
     }
     //newly added
-    catch (error) {
+        catch (error) {
         if (error.response) {
-          console.error('Error deleting employee:', error.response.status, error.response.statusText);
+          console.error('Error deleting employer:', error.response.status, error.response.statusText);
         } else {
-          console.error('Error deleting employee:', error);
+          console.error('Error deleting employer:', error);
         }
       }
       
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default DeleteBtn;
+export default DeleteEmployer;
