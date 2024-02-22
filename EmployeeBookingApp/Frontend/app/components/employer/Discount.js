@@ -1,27 +1,27 @@
 import { View, StyleSheet, Text,FlatList } from 'react-native';
 import React, { Component, useState, useEffect, useCallback } from 'react';
-import ViewItems from '../admin/ViewItem';
+// import ViewItems from '../admin/ViewItem';
 import Client from '../../api/Client';
 import { TouchableOpacity } from 'react-native';
-const Discount = () => {
-    const [items, setItems] = useState([]);
-
+const ViewItems = () => {
+    const [items,setItems]=useState();
+    
     const fetchData = useCallback(async () => {
         try {
-            const response = await Client.get(`/ViewItems/`); // Assuming this is the correct endpoint
+            const response = await Client.get(`/ViewIteams/`);
             setItems(response.data);
         } catch (error) {
             console.error('Error fetching item data:', error);
         }
     }, []);
 
-    useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+//     useEffect(() => {
+//         fetchData();
+//     }, [fetchData]);
 
-    const handleDeleteItem = useCallback(async () => {
-        await fetchData();
-    }, [fetchData]);
+//     const handleDeleteItem = useCallback(async () => {
+//         await fetchData();
+//     }, [fetchData]);
 
     const renderItem = ({ item }) => (
         <View style={styles.row}>
@@ -29,18 +29,16 @@ const Discount = () => {
             <Text style={styles.column}>{item.name2}</Text>
             <Text style={styles.column}>{item.name3}</Text>
             <TouchableOpacity style={styles.actionsColumn}>
-                {/* Add your delete item functionality here */}
             </TouchableOpacity>
         </View>
     );
-
     return (
-        <View style={styles.container}>
+      <View style={styles.container}>
             <View style={styles.headerRow}>
                 <Text style={styles.headerColumn}>type</Text>
                 <Text style={styles.headerColumn}>item</Text>
                 <Text style={styles.headerColumn}>Normal cost</Text>
-                <Text style={styles.headerColumn}>Discount cost</Text>
+                <Text style={styles.headerColumn}>Discound cost</Text>
             </View>
             <FlatList
                 data={items}
@@ -49,6 +47,7 @@ const Discount = () => {
             />
         </View>
     );
+    
 };
 
 const styles = StyleSheet.create({
