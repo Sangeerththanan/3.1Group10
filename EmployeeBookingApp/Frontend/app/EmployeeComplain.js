@@ -24,6 +24,9 @@ const Multiline = (props) => {
 
 // define your styles
 const styles = StyleSheet.create({
+    container: {
+        marginBottom: 20,
+    },
     input: {
         borderWidth: 1,
         borderColor: '#1b1b33',
