@@ -1,25 +1,38 @@
-//import liraries
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { SelectList } from 'react-native-dropdown-select-list'
+import { SelectList } from 'react-native-dropdown-select-list';
+import Client from '../../api/Client';
 
-// create a component
 const SelectionList = (props) => {
-    const [selected, setSelected] = React.useState("");
-    const data = [
-        { key: '1', value: 'Mason' },
-        { key: '2', value: 'Carpenter' },
-        { key: '3', value: 'Electrician' },
-        { key: '4', value: 'Plumber' },
-        { key: '5', value: 'Painter' },
-        { key: '6', value: 'Tile Setter' },
-        { key: '7', value: 'Roofer' },
-    ]
-    const { lable, error, onSelectionChange } = props;
+    const [selected, setSelected] = useState("");
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await Client.get('/workTypes/');
+                // Store Values in Temporary Array
+                let newArray = response.data.map((item) => ({
+                    key: item.id,
+                    value: item.workType
+                }));
+                // Set Data Variable
+                setData(newArray);
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
+        // Call the fetchData function
+        fetchData();
+    }, []); // Empty dependency array to run the effect only once when the component mounts
+
+    const { label, error, onSelectionChange } = props;
+
     return (
         <>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
-                <Text style={{ fontWeight: 'bold' }}>{lable}</Text>
+                <Text style={{ fontWeight: 'bold' }}>{label}</Text>
                 {error ? <Text style={{ color: 'red', fontSize: 16 }}>{error}</Text> : null}
             </View>
             <SelectList
@@ -39,14 +52,13 @@ const SelectionList = (props) => {
                     setSelected(val);
                     onSelectionChange(val); // Pass the selected value to the parent component
                 }}
-                data={data}
+                data={data} // Use an empty array if data is null
                 save="value"
             />
         </>
     );
 };
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -56,5 +68,4 @@ const styles = StyleSheet.create({
     },
 });
 
-//make this component available to the app
 export default SelectionList;

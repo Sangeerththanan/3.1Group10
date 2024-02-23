@@ -1,5 +1,5 @@
 const db = require('../models');
-const AddItems = db.AddItems;
+const Item = db.Item;
 
 // Add a new record and store
 
@@ -11,7 +11,7 @@ exports.create = (req, res) => {
   }
 
     // Create the adding items
-    const addItem = new AddItems({
+    const item = new Item({
       type: req.body.type,
       item: req.body.item,
       cost: req.body.cost,
@@ -19,8 +19,8 @@ exports.create = (req, res) => {
     });
 
     // Store a items in the database
-    addItem
-      .save(addItem)
+    item
+      .save(item)
       .then(data => {
         res.json({ success: true, data });
         //res.send(data);
@@ -35,7 +35,7 @@ exports.create = (req, res) => {
 
 // Fetch all items records
 exports.findAll= (req, res) => {
-  AddItems.find()
+  Item.find()
     .then(data => {
       if (!data)
         res.status(404).send({ message: "Not found any items "} );

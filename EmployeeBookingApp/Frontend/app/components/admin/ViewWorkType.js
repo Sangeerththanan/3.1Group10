@@ -1,54 +1,46 @@
-import { View, StyleSheet, Text,FlatList } from 'react-native';
-import React, { Component, useState, useEffect, useCallback } from 'react';
+//import liraries
+import React, { Component, useCallback, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import Client from '../../api/Client';
-import { TouchableOpacity } from 'react-native';
-const ViewItems = () => {
-    const [items,setItems]=useState();
-    
+
+// create a component
+const ViewWorkType = () => {
+    const [workTypes, setWorkTypes] = useState(null);
+
     const fetchData = useCallback(async () => {
         try {
-            const response = await Client.get(`/employees/`);
-            setItems(response.data);
+            const response = await Client.get('/workTypes/');
+            setWorkTypes(response.data);
+            console.log(response.data);
         } catch (error) {
-            console.error('Error fetching item data:', error);
+            console.error('Error fetching work types data:', error);
         }
     }, []);
-
     useEffect(() => {
         fetchData();
     }, [fetchData]);
 
-    const handleDeleteItem = useCallback(async () => {
-        await fetchData();
-    }, [fetchData]);
-
-    const renderItem = ({ item }) => (
+    const renderWorkType = ({ item }) => (
         <View style={styles.row}>
-            <Text style={styles.column}>{item.name1}</Text>
-            <Text style={styles.column}>{item.name2}</Text>
-            <Text style={styles.column}>{item.name3}</Text>
-            <TouchableOpacity style={styles.actionsColumn}>
-            </TouchableOpacity>
+            <Text style={styles.column}>{item.workType}</Text>
         </View>
     );
+
     return (
-      <View style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.headerRow}>
-                <Text style={styles.headerColumn}>type</Text>
-                <Text style={styles.headerColumn}>item</Text>
-                <Text style={styles.headerColumn}>cost</Text>
-                
+                <Text style={styles.headerColumn}>Work Types</Text>
             </View>
             <FlatList
-                data={items}
+                data={workTypes}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={renderItem}
+                renderItem={renderWorkType}
             />
         </View>
     );
-    
 };
 
+// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -87,6 +79,5 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ViewItems;
-
-
+//make this component available to the app
+export default ViewWorkType;
