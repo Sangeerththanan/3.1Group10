@@ -115,7 +115,7 @@ exports.update = (req, res) => {
         .then(data => {
           if (!data) {
             res.status(404).send({
-              message: `Cannot update employee with email=${email}. Maybe employee was not found!`
+              message: `Cannot update employee with email=${email}. Maybe the employee was not found!`
             });
           } else {
             // res.send({ message: "Employee was updated successfully.", updatedEmployee: data });
@@ -134,7 +134,7 @@ exports.update = (req, res) => {
       .then(data => {
         if (!data) {
           res.status(404).send({
-            message: `Cannot update employee with email=${email}. Maybe employee was not found!`
+            message: `Cannot update employee with email=${email}. Maybe the employee was not found!`
           });
         } else {
           res.send({ message: "Employee was updated successfully.", updatedEmployee: data });
@@ -183,7 +183,7 @@ exports.findAll= (req, res) => {
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving the employeerecords"});
+        .send({ message: "Error retrieving the employee records"});
     });
 };
 
@@ -195,7 +195,7 @@ exports.delete = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: "Cannot delete stuedent with email=${{ email } }. Maybe employee was not found!"
+          message: "Cannot delete student with email=${{ email } }. Maybe the employee was not found!"
         });
       } else {
         res.send({
