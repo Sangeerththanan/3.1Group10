@@ -20,7 +20,7 @@ const StatusBtn = (props) => {
         try {
             // Update the status in the database
             const newStatus = status === 'Available' ? 'Busy' : 'Available';
-            await Client.put('/employees/status/${props.employee.email}', { status: newStatus });
+            await Client.put(`/employees/status/${props.employee.email}`, { status: newStatus });
         } catch (error) {
             console.error('Error updating status:', error);
         }
