@@ -44,6 +44,6 @@ exports.findAll= (req, res) => {
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving the complainrecords"});
+        .send({ message: "Error retrieving the complaint records"});
     });
 };

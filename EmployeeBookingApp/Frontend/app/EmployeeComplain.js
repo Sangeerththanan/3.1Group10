@@ -24,20 +24,8 @@ const Multiline = (props) => {
 
 // define your styles
 const styles = StyleSheet.create({
-        container: {
+    container: {
         marginBottom: 20,
-    },
-    labelContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 5,
-    },
-    label: {
-        fontWeight: 'bold',
-    },
-    error: {
-        color: 'red',
-        fontSize: 16,
     },
     input: {
         borderWidth: 1,
