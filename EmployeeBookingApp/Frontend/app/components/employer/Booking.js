@@ -1,12 +1,13 @@
 //import liraries
 import React, { Component, useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import FormContainer from '../FormContainer';
 import SelectionList from '../employee/SelectionList';
 import { Formik } from 'formik';
 import Client from '../../api/Client';
 import FormSubmitButton from '../FormSubmitButton';
+import BookBtn from './BookBtn';
 
 // create a component
 const Booking = () => {
@@ -31,7 +32,9 @@ const Booking = () => {
             <Text style={styles.column}>{item.name}</Text>
             <Text style={styles.column}>{item.email}</Text>
             <Text style={styles.column}>{item.workType}</Text>
-            <Text style={styles.column}>Book</Text>
+            <TouchableOpacity style={styles.actionsColumn}>
+                <BookBtn/>
+            </TouchableOpacity>
         </View>
     );
 
