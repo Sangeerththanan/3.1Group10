@@ -208,3 +208,19 @@ exports.delete = (req, res) => {
         message: "Could not delete employee with { email } =" + email });
     });
 };
+
+// Get employee details by work type
+exports.findType = (req, res) => {
+  const {workType}= req.params;
+  Employee.find({workType})
+    .then(data => {
+      if (!data)
+      res.status(404).send({ message: `Not found employee with email: ${workType}` });
+      else res.json(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: `Error retrieving employee with email: + ${workType}`});
+    });
+};

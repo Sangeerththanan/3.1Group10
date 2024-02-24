@@ -8,7 +8,7 @@ import EmployerProfile from './components/employer/EmployerProfile';
 import EmployeeComplain from './components/employer/EmployeeComplain';
 import Employment from './components/employee/Employment';
 import Discount from './components/employer/Discount';
-import Booking from './components/employee/Booking';
+import Booking from './components/employer/Booking';
 
 const Drawer = createDrawerNavigator();
 

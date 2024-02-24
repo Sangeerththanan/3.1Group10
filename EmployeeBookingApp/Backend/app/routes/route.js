@@ -23,7 +23,7 @@ module.exports = app => {
 
 
 
-    // Retrieve a single employe with email
+    // Retrieve a single employee with email
     router.get("/employees/:email", employees.findOne);
     router.get("/employers/:email", employers.findOne);
 
@@ -42,6 +42,9 @@ module.exports = app => {
 
     // Delete a employee with id
     router.delete("/employees/:email", employees.delete);
+
+    // Retrieve employees with work type
+    router.get("/employees/workType/:workType", employees.findType);
 
     app.use("/api", router);
 };
