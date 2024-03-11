@@ -5,6 +5,7 @@ module.exports = app => {
     const complains = require('../controllers/complain.controller.js');
     const items = require('../controllers/item.controller.js');
     const workTypes = require('../controllers/workType.controller.js');
+    const booking = require('../controllers/booking.controller.js');
 
     const express = require('express');
     const router = express.Router();
@@ -15,6 +16,7 @@ module.exports = app => {
     router.post("/complains", complains.create);
     router.post("/items", items.create);
     router.post("/addWorkType", workTypes.create);
+    router.post("/booking", booking.create);
 
     // Signin
     router.post("/employees/signin", employees.signin);
@@ -39,6 +41,7 @@ module.exports = app => {
     router.get("/complains", complains.findAll);
     router.get("/items", items.findAll);
     router.get("/workTypes",workTypes.findAll);
+    router.get("/booking",booking.findAll);
 
     // Delete a employee with id
     router.delete("/employees/:email", employees.delete);

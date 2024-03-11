@@ -35,6 +35,9 @@ const EmployeerLoginForm= ({ navigation }) => {
             // navigation.dispatch(
             //     StackActions.replace('EmployeeProfile', { email: values.email })
             // );
+        } else {
+            // alert('Login failed. Please check your credentials and try again.');
+            alert(res.data.message);
         }
         console.log(res.data);
         formikAction.resetForm();

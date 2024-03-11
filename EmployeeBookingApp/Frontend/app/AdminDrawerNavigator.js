@@ -10,6 +10,7 @@ import AddItems from './components/admin/AddItems';
 import ViewItems from './components/admin/ViewItems';
 import AddWorkType from './components/admin/AddWorkType';
 import ViewWorkType from './components/admin/ViewWorkType';
+import Booking from './components/admin/Bookings';
 const Drawer = createDrawerNavigator();
 
 const CustomDrawer = (props) => {
@@ -63,6 +64,7 @@ const DrawerNavigator = () => {
       <Drawer.Screen component={Complains} name='Complains' />
       <Drawer.Screen component={AddItems} name='AddItems' />
       <Drawer.Screen component={ViewItems} name='ViewItems' />
+      <Drawer.Screen component={Booking} name='Bookings' />
     </Drawer.Navigator>
   );
 };

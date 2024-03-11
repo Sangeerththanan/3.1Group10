@@ -12,4 +12,6 @@ db.Admin = require("./admin.model.js")(mongoose);
 db.Complain = require("./complain.models.js")(mongoose);
 db.Item = require("./item.model.js")(mongoose);
 db.WorkType = require("./workType.model.js")(mongoose);
+db.Booking = require("./booking.model.js")(mongoose);
+
 module.exports = db;

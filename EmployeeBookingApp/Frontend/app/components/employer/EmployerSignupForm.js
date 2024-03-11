@@ -37,23 +37,31 @@ const EmployerSignupForm = ({ navigation }) => {
     }
 
     const signUp = async (values, formikAction) => {
-        const paymentValue = parseFloat(values.payment);
-        const res = await Client.post('/employers', {
-            ...values,
-            payment: paymentValue, // Send the parsed number, not the string
+        try {
+            const paymentValue = parseFloat(values.payment);
+            const res = await Client.post('/employers', {
+                ...values,
+                payment: paymentValue, // Send the parsed number, not the string
             workType: selectedWorkType // Include the selected work type in the data
-        });
-
-        // if (res.data.success) {
-        //     navigation.dispatch(
-        //         StackActions.replace('EmployeeProfile')
-        //     );
-        // }
-
-        //console.log({ ...values, payment: paymentValue });
-        console.log(res.data);
-        formikAction.resetForm();
-        formikAction.setSubmitting(false);
+            });
+    
+            if (res.data.success) {
+                // Successful signup
+                alert('Signup successful! You can now log in.');
+                navigation.navigate('Login'); // Redirect to the login screen
+            } else {
+                // Failed signup
+                alert('Signup failed. Please check your information and try again.');
+            }
+    
+            formikAction.resetForm();
+            formikAction.setSubmitting(false);
+        } catch (error) {
+            // Handle error from the server or network issue
+            console.error('Error during signup:', error);
+            alert('An error occurred during signup. Please try again later.');
+            formikAction.setSubmitting(false);
+        }
     };
 
     return (

@@ -8,9 +8,12 @@ import { Formik } from 'formik';
 import Client from '../../api/Client';
 import FormSubmitButton from '../FormSubmitButton';
 import BookBtn from './BookBtn';
+import { useLogin } from '../../context/LoginProvider';
 
 // create a component
 const Booking = () => {
+    const { profile } = useLogin();
+    const { name } = profile;
     const [selectedWorkType, setSelectedWorkType] = useState('');
     const [employees, setEmployees] = useState([]);
     const bookingInfo = {
@@ -27,13 +30,33 @@ const Booking = () => {
         }
     }, [selectedWorkType]);
 
+    const handleBook = async (employee) => {
+        try {
+            console.log('Booking...');
+            console.log(name);
+            const response = await Client.post('/booking', {
+                employer: name, // Replace with the actual employer ID
+                type: employee.workType,
+                employee: employee.name,
+            });
+            console.log(response.data);
+            // You may want to update the UI or perform additional actions after successful booking
+            alert(`You have successfully booked ${employee.workType} ${employee.name}`);
+        } catch (error) {
+            console.error('Error creating booking:', error);
+        }
+    };
+
     const renderEmployeeItem = ({ item }) => (
         <View style={styles.row}>
             <Text style={styles.column}>{item.name}</Text>
             <Text style={styles.column}>{item.email}</Text>
             <Text style={styles.column}>{item.workType}</Text>
-            <TouchableOpacity style={styles.actionsColumn}>
-                <BookBtn/>
+            <TouchableOpacity
+                style={styles.actionsColumn}
+                onPress={() => handleBook(item)}
+            >
+                <BookBtn />
             </TouchableOpacity>
         </View>
     );
@@ -67,18 +90,18 @@ const Booking = () => {
                 </Formik>
             </FormContainer>
             <View style={styles.container}>
-            <View style={styles.headerRow}>
-                <Text style={styles.headerColumn}>Name</Text>
-                <Text style={styles.headerColumn}>Email</Text>
-                <Text style={styles.headerColumn}>Work Type</Text>
-                <Text style={styles.headerColumn}>Actions</Text>
+                <View style={styles.headerRow}>
+                    <Text style={styles.headerColumn}>Name</Text>
+                    <Text style={styles.headerColumn}>Email</Text>
+                    <Text style={styles.headerColumn}>Work Type</Text>
+                    <Text style={styles.headerColumn}>Actions</Text>
+                </View>
+                <FlatList
+                    data={employees}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={renderEmployeeItem}
+                />
             </View>
-            <FlatList
-                data={employees}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={renderEmployeeItem}
-            />
-        </View>
         </>
     );
 };
@@ -117,6 +140,7 @@ const styles = StyleSheet.create({
     },
     actionsColumn: {
         paddingHorizontal: 12,
+        paddingVertical:15,
         justifyContent: 'center',
         alignItems: 'flex-end',
     },
