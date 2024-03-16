@@ -47,3 +47,20 @@ exports.findAll= (req, res) => {
         .send({ message: "Error retrieving the items records"});
     });
 };
+
+// Get items details by types
+exports.findType = (req, res) => {
+  const { type } = req.params;
+  console.log(type);
+  Item.find({ type })
+      .then(data => {
+          if (!data)
+              res.status(404).send({ message: Not found item with type: ${type} });
+          else res.json(data);
+      })
+      .catch(err => {
+          res
+              .status(500)
+              .send({ message: Error retrieving item with type: + ${type} });
+      });
+};
