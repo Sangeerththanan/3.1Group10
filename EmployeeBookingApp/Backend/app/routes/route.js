@@ -49,5 +49,11 @@ module.exports = app => {
     // Retrieve employees with work type
     router.get("/employees/workType/:workType", employees.findType);
 
+    // Get discount details by bookings
+    router.get("/employers/discount/:ERemail",booking.findType);
+
+    // Get items details by types
+    router.get("/items/discount/:type",items.findType);
+
     app.use("/api", router);
 };
