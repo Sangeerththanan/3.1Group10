@@ -13,7 +13,7 @@ import { useLogin } from '../../context/LoginProvider';
 // create a component
 const Booking = () => {
     const { profile } = useLogin();
-    const { name } = profile;
+    const { name, email } = profile;
     const [selectedWorkType, setSelectedWorkType] = useState('');
     const [employees, setEmployees] = useState([]);
     const bookingInfo = {
@@ -22,7 +22,7 @@ const Booking = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            const response = await Client.get(`/employees/workType/${selectedWorkType}`);
+            const response = await Client.get(/employees/workType/${selectedWorkType});
             setEmployees(response.data);
             console.log(response.data);
         } catch (error) {
@@ -35,13 +35,15 @@ const Booking = () => {
             console.log('Booking...');
             console.log(name);
             const response = await Client.post('/booking', {
+                ERemail: email,
                 employer: name, // Replace with the actual employer ID
                 type: employee.workType,
                 employee: employee.name,
+                EEemail: employee.email,
             });
             console.log(response.data);
             // You may want to update the UI or perform additional actions after successful booking
-            alert(`You have successfully booked ${employee.workType} ${employee.name}`);
+            alert(You have successfully booked ${employee.workType} ${employee.name});
         } catch (error) {
             console.error('Error creating booking:', error);
         }
