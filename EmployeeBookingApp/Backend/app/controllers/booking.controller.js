@@ -12,9 +12,11 @@ exports.create = (req, res) => {
 
     // Create a booking
     const booking = new Booking({
+        ERemail: req.body.ERemail,
         employer: req.body.employer,
         type: req.body.type,
-        employee: req.body.employee
+        employee: req.body.employee,
+        EEemail: req.body.EEemail
     });
 
     // Store a booking in the database
@@ -33,16 +35,32 @@ exports.create = (req, res) => {
 };
 
 // Fetch all booking records
-exports.findAll= (req, res) => {
+exports.findAll = (req, res) => {
     Booking.find()
-      .then(data => {
-        if (!data)
-          res.status(404).send({ message: "Not found any booking "} );
-        else res.json(data);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .send({ message: "Error retrieving the booking records"});
-      });
-  };
+        .then(data => {
+            if (!data)
+                res.status(404).send({ message: "Not found any booking " });
+            else res.json(data);
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .send({ message: "Error retrieving the booking records" });
+        });
+};
+
+// Get discount details by bookings
+exports.findType = (req, res) => {
+    const { ERemail } = req.params;
+    Booking.find({ ERemail })
+        .then(data => {
+            if (!data)
+                res.status(404).send({ message: Not found booking with email: ${ERemail} });
+            else res.json(data);
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .send({ message: Error retrieving booking with email: + ${ERemail} });
+        });
+};
