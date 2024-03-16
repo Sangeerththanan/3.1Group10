@@ -1,52 +1,72 @@
-import { View, StyleSheet, Text,FlatList } from 'react-native';
-import React, { Component, useState, useEffect, useCallback } from 'react';
-// import ViewItems from '../admin/ViewItem';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, StyleSheet, Text, FlatList } from 'react-native';
 import Client from '../../api/Client';
-import { TouchableOpacity } from 'react-native';
+import { useLogin } from '../../context/LoginProvider';
+
 const Discount = () => {
+    const { profile } = useLogin();
+    const { email } = profile;
+    const [types, setTypes] = useState([]);
     const [items, setItems] = useState([]);
 
-    const fetchData = useCallback(async () => {
+    const fetchType = useCallback(async () => {
         try {
-            const response = await Client.get(`/ViewItems/`); // Assuming this is the correct endpoint
-            setItems(response.data);
+            const response = await Client.get(/employers/discount/${email});
+            setTypes(response.data.map(item => item.type));
         } catch (error) {
-            console.error('Error fetching item data:', error);
+            console.error('Error fetching type data:', error);
+        }
+    }, [email]);
+
+    useEffect(() => {
+        fetchType();
+    }, [fetchType]);
+
+    const fetchItemsForType = useCallback(async (type) => {
+        try {
+            const response = await Client.get(/items/discount/${type});
+            return response.data;
+        } catch (error) {
+            console.error(Error fetching items for type ${type}:, error);
+            return [];
         }
     }, []);
 
     useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+        const fetchData = async () => {
+            const allItems = await Promise.all(types.map(type => fetchItemsForType(type)));
+            setItems(allItems.flat());
+        };
 
-    const handleDeleteItem = useCallback(async () => {
-        await fetchData();
-    }, [fetchData]);
+        fetchData();
+    }, [types, fetchItemsForType]);
 
     const renderItem = ({ item }) => (
         <View style={styles.row}>
-            <Text style={styles.column}>{item.name1}</Text>
-            <Text style={styles.column}>{item.name2}</Text>
-            <Text style={styles.column}>{item.name3}</Text>
-            <TouchableOpacity style={styles.actionsColumn}>
-                {/* Add your delete item functionality here */}
-            </TouchableOpacity>
+            <Text style={styles.column}>{item.type}</Text>
+            <Text style={styles.column}>{item.item}</Text>
+            <Text style={styles.column}>{item.cost}</Text>
+            <Text style={styles.column}>{item.cost * 0.9}</Text>
         </View>
     );
 
     return (
         <View style={styles.container}>
             <View style={styles.headerRow}>
-                <Text style={styles.headerColumn}>type</Text>
-                <Text style={styles.headerColumn}>item</Text>
+                <Text style={styles.headerColumn}>Type</Text>
+                <Text style={styles.headerColumn}>Item</Text>
                 <Text style={styles.headerColumn}>Normal cost</Text>
                 <Text style={styles.headerColumn}>Discount cost</Text>
             </View>
-            <FlatList
-                data={items}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={renderItem}
-            />
+            {items.length > 0 ? (
+                <FlatList
+                    data={items}
+                    keyExtractor={(item, index) => item.id ? item.id.toString() : index.toString()}
+                    renderItem={renderItem}
+                />
+            ) : (
+                <Text style={styles.errorText}>No items found</Text>
+            )}
         </View>
     );
 };
@@ -82,13 +102,12 @@ const styles = StyleSheet.create({
         color: '#2196f3',
         fontWeight: 'bold',
     },
-    actionsColumn: {
-        paddingHorizontal: 12,
-        justifyContent: 'center',
-        alignItems: 'flex-end',
+    errorText: {
+        textAlign: 'center',
+        marginTop: 20,
+        fontSize: 16,
+        color: 'red',
     },
 });
 
 export default Discount;
-
-
