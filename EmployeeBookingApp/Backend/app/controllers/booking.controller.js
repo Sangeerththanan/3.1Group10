@@ -1,13 +1,11 @@
 const db = require('../models');
 const Booking = db.Booking;
 
-// Add a new employee record and store
-
+// Add a new booking record
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.employer || !req.body.type || !req.body.employee) {
-        res.status(400).send({ message: "Content can not be empty!" });
-        return;
+        return res.status(400).json({ success: false, message: "Missing required fields: employer, type, employee" });
     }
 
     // Create a booking
@@ -19,18 +17,14 @@ exports.create = (req, res) => {
         EEemail: req.body.EEemail
     });
 
-    // Store a booking in the database
-    booking
-        .save(booking)
+    // Store the booking in the database
+    booking.save()
         .then(data => {
-            res.json({ success: true, data });
-            //res.send(data);
+            res.status(201).json({ success: true, data });
         })
         .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the booking record."
-            });
+            console.error("Error creating the booking record:", err);
+            res.status(500).json({ success: false, message: "Error creating the booking record" });
         });
 };
 
@@ -38,29 +32,29 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Booking.find()
         .then(data => {
-            if (!data)
-                res.status(404).send({ message: "Not found any booking " });
-            else res.json(data);
+            if (!data || data.length === 0)
+                res.status(404).json({ success: false, message: "No booking records found" });
+            else
+                res.json({ success: true, data });
         })
         .catch(err => {
-            res
-                .status(500)
-                .send({ message: "Error retrieving the booking records" });
+            console.error("Error retrieving booking records:", err);
+            res.status(500).json({ success: false, message: "Error retrieving booking records" });
         });
 };
 
-// Get discount details by bookings
+// Get bookings by ERemail
 exports.findType = (req, res) => {
     const { ERemail } = req.params;
     Booking.find({ ERemail })
         .then(data => {
-            if (!data)
-                res.status(404).send({ message: `Not found booking with email: ${ERemail}` });
-            else res.json(data);
+            if (!data || data.length === 0)
+                res.status(404).json({ success: false, message: `Not found booking with email: ${ERemail}` });
+            else
+                res.json({ success: true, data });
         })
         .catch(err => {
-            res
-                .status(500)
-                .send({ message: `Error retrieving booking with email: + ${ERemail}` });
+            console.error(`Error retrieving booking with email: ${ERemail}`, err);
+            res.status(500).json({ success: false, message: `Error retrieving booking with email: ${ERemail}` });
         });
 };

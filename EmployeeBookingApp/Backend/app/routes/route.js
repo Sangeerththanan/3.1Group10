@@ -50,6 +50,7 @@ module.exports = app => {
     router.get("/employees/workType/:workType", employees.findType);
 
     // Get discount details by bookings
+    // Get Booking details by email
     router.get("/employers/discount/:ERemail",booking.findType);
 
     // Get items details by types

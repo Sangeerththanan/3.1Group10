@@ -9,6 +9,7 @@ import EmployeeComplain from './components/employer/EmployeeComplain';
 import Employment from './components/employee/Employment';
 import Discount from './components/employer/Discount';
 import Booking from './components/employer/Booking';
+import MyBookings from './components/employer/MyBookings';
 
 const Drawer = createDrawerNavigator();
 
@@ -58,6 +59,7 @@ const EmployerDrawerNavigator = () => {
     <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />} >
       <Drawer.Screen component={EmployerProfile} name='Profile' />
       <Drawer.Screen component={Booking} name='Booking' />
+      <Drawer.Screen component={MyBookings} name='MyBookings' />
       <Drawer.Screen component={Discount} name='Discount' />
       <Drawer.Screen component={EmployeeComplain} name='Complain' />
       <Drawer.Screen component={Home} name='Home' />
