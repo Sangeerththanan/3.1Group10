@@ -55,12 +55,12 @@ exports.findType = (req, res) => {
     Booking.find({ ERemail })
         .then(data => {
             if (!data)
-                res.status(404).send({ message: Not found booking with email: ${ERemail} });
+                res.status(404).send({ message: `Not found booking with email: ${ERemail}` });
             else res.json(data);
         })
         .catch(err => {
             res
                 .status(500)
-                .send({ message: Error retrieving booking with email: + ${ERemail} });
+                .send({ message: `Error retrieving booking with email: + ${ERemail}` });
         });
 };

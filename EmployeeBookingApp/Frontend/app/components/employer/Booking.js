@@ -22,7 +22,7 @@ const Booking = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            const response = await Client.get(/employees/workType/${selectedWorkType});
+            const response = await Client.get(`/employees/workType/${selectedWorkType}`);
             setEmployees(response.data);
             console.log(response.data);
         } catch (error) {
@@ -43,7 +43,7 @@ const Booking = () => {
             });
             console.log(response.data);
             // You may want to update the UI or perform additional actions after successful booking
-            alert(You have successfully booked ${employee.workType} ${employee.name});
+            alert(`You have successfully booked ${employee.workType} ${employee.name}`);
         } catch (error) {
             console.error('Error creating booking:', error);
         }

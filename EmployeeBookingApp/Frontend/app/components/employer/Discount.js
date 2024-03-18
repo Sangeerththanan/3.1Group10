@@ -11,7 +11,7 @@ const Discount = () => {
 
     const fetchType = useCallback(async () => {
         try {
-            const response = await Client.get(/employers/discount/${email});
+            const response = await Client.get(`/employers/discount/${email}`);
             setTypes(response.data.map(item => item.type));
         } catch (error) {
             console.error('Error fetching type data:', error);
@@ -24,10 +24,10 @@ const Discount = () => {
 
     const fetchItemsForType = useCallback(async (type) => {
         try {
-            const response = await Client.get(/items/discount/${type});
+            const response = await Client.get(`/items/discount/${type}`);
             return response.data;
         } catch (error) {
-            console.error(Error fetching items for type ${type}:, error);
+            console.error(`Error fetching items for type ${type}:`, error);
             return [];
         }
     }, []);
