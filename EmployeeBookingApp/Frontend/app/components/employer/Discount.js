@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, StyleSheet, Text, FlatList, Button, Alert } from 'react-native';
 import Client from '../../api/Client';
 import { useLogin } from '../../context/LoginProvider';
-import { Button } from 'react-native';
+
 const Discount = () => {
     const { profile } = useLogin();
     const { email } = profile;
