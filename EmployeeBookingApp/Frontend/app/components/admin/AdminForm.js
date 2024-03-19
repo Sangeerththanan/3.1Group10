@@ -10,7 +10,7 @@ import { StackActions } from '@react-navigation/native';
 const AdminForm = ({ navigation }) => {
     const fetchApi = async () => {
         try {
-            const res = await axios.get('http://172.20.10.8:8080/')
+            const res = await axios.get('http://192.168.84.89:8080/')
 
             console.log(res.data)
         } catch (error) {

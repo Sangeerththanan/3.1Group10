@@ -9,9 +9,9 @@ import EmployeeComplain from './components/employer/EmployeeComplain';
 import Employment from './components/employee/Employment';
 import Discount from './components/employer/Discount';
 import Booking from './components/employer/Booking';
-import MyBookings from './components/employer/MyBookings';
+import MyBookings from './components/employer/myBookigs';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();   
 
 const CustomDrawer = (props) => {
   const { setEmployerLoggedIn, profile } = useLogin();

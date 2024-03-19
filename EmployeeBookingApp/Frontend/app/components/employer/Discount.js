@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, StyleSheet, Text, FlatList } from 'react-native';
+import { View, StyleSheet, Text, FlatList, Button, Alert } from 'react-native';
 import Client from '../../api/Client';
 import { useLogin } from '../../context/LoginProvider';
-
+import { Button } from 'react-native';}
 const Discount = () => {
     const { profile } = useLogin();
     const { email } = profile;
@@ -47,8 +47,16 @@ const Discount = () => {
             <Text style={styles.column}>{item.item}</Text>
             <Text style={styles.column}>{item.cost}</Text>
             <Text style={styles.column}>{item.cost * 0.9}</Text>
+            <Button
+            title="Buy"
+            onPress={()=>handleBuy(item)}
+            />
         </View>
+
     );
+    const handleBuy=(item)=>{
+        alert('Buying',item);
+    };
 
     return (
         <View style={styles.container}>
