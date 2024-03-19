@@ -15,7 +15,7 @@ const Employment = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            const response = await Client.get('/employees/${email}');
+            const response = await Client.get(`/employees/${email}`);
             setEmployeeData(response.data);
         } catch (error) {
             console.error('Error fetching employee data:', error);
@@ -25,29 +25,29 @@ const Employment = () => {
     useEffect(() => {
         fetchData();
     }, [fetchData]);
-// Use useFocusEffect to refetch data when the component is focused
-useFocusEffect(
-    useCallback(() => {
-        fetchData();
-    }, [fetchData])
-);
+    // Use useFocusEffect to refetch data when the component is focused
+    useFocusEffect(
+        useCallback(() => {
+            fetchData();
+        }, [fetchData])
+    );
 
-return (
-    <View style={styles.container}>
-        {employeeData ? (
-            <View>
-                <StatusBtn 
-                employee={employeeData} 
-                disablePress={true} 
-                />
-                <Text style={styles.text}>Payment Info : {employeeData.payment} per hour</Text>
-                
-            </View>
-        ) : (
-            <Text style={styles.loadingText}>Loading...</Text>
-        )}
-    </View>
-);
+    return (
+        <View style={styles.container}>
+            {employeeData ? (
+                <View>
+                    <StatusBtn
+                        employee={employeeData}
+                        disablePress={true}
+                    />
+                    <Text style={styles.text}>Payment Info : {employeeData.payment} per hour</Text>
+
+                </View>
+            ) : (
+                <Text style={styles.loadingText}>Loading...</Text>
+            )}
+        </View>
+    );
 };
 // define your styles
 const styles = StyleSheet.create({

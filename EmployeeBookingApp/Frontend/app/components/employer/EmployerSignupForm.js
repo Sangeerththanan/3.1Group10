@@ -32,8 +32,8 @@ const EmployerSignupForm = ({ navigation }) => {
         confirmPassword: '',
         contactNo: '',
         address: '',
-        
-    
+
+
     }
 
     const signUp = async (values, formikAction) => {
@@ -42,9 +42,9 @@ const EmployerSignupForm = ({ navigation }) => {
             const res = await Client.post('/employers', {
                 ...values,
                 payment: paymentValue, // Send the parsed number, not the string
-            workType: selectedWorkType // Include the selected work type in the data
+                workType: selectedWorkType // Include the selected work type in the data
             });
-    
+
             if (res.data.success) {
                 // Successful signup
                 alert('Signup successful! You can now log in.');
@@ -53,7 +53,7 @@ const EmployerSignupForm = ({ navigation }) => {
                 // Failed signup
                 alert('Signup failed. Please check your information and try again.');
             }
-    
+
             formikAction.resetForm();
             formikAction.setSubmitting(false);
         } catch (error) {

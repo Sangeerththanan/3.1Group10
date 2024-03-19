@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     },
     actionsColumn: {
         paddingHorizontal: 12,
-        paddingVertical:15,
+        paddingVertical: 15,
         justifyContent: 'center',
         alignItems: 'flex-end',
     },

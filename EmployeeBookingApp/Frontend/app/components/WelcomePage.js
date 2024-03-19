@@ -7,7 +7,7 @@ import { StackActions } from '@react-navigation/native';
 const { width } = Dimensions.get('window')
 
 // create a component
-const WelcomePage = ({navigation}) => {
+const WelcomePage = ({ navigation }) => {
     const employee = async () => {
         navigation.dispatch(
             StackActions.replace('AppForm')
@@ -23,7 +23,7 @@ const WelcomePage = ({navigation}) => {
             StackActions.replace('EmployeerAppForm')
         );
     };
-    
+
 
     return (
         <View style={styles.container}>
@@ -33,7 +33,7 @@ const WelcomePage = ({navigation}) => {
             />
             <UserTypeButton
                 lable='Admin'
-            onPress={admin}
+                onPress={admin}
             />
             <UserTypeButton
                 lable='Employee'
@@ -41,7 +41,7 @@ const WelcomePage = ({navigation}) => {
             />
             <UserTypeButton
                 lable='Employer'
-            onPress={employeer}
+                onPress={employeer}
             />
         </View>
     );

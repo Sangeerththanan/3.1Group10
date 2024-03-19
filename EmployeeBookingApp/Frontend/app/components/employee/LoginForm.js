@@ -17,8 +17,8 @@ const validationSchema = Yup.object({
 })
 
 // create a component
-const LoginForm= ({ navigation }) => {
-    const {setIsLoggedIn, setProfile} = useLogin();
+const LoginForm = ({ navigation }) => {
+    const { setIsLoggedIn, setProfile } = useLogin();
     const userInfo = {
         email: '',
         password: '',

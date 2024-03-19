@@ -24,7 +24,7 @@ const EmployerAppForm = ({ navigation }) => {
         inputRange: [0, width],
         outputRange: [1, 0],
     });
-    
+
     const leftHeaderTranslateX = animation.interpolate({
         inputRange: [0, width],
         outputRange: [0, 40],
@@ -39,7 +39,7 @@ const EmployerAppForm = ({ navigation }) => {
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,1)', 'rgba(27,27,51,0.4)'],
     });
- 
+
     const signupColorInterpolate = animation.interpolate({
         inputRange: [0, width],
         outputRange: ['rgba(27,27,51,0.4)', 'rgba(27,27,51,1)'],
@@ -63,12 +63,12 @@ const EmployerAppForm = ({ navigation }) => {
     const welcomePage = async () => {
         navigation.dispatch(
             StackActions.replace('WelcomePage')
-            );
+        );
     };
 
     return (
-        <View style={{ flex: 1,}}>
-        <HomeBtn onPress={welcomePage}/>
+        <View style={{ flex: 1, }}>
+            <HomeBtn onPress={welcomePage} />
             <View style={{ height: 80 }}>
                 <FormHeader
                     leftHeading='Welcome '
@@ -90,7 +90,7 @@ const EmployerAppForm = ({ navigation }) => {
                     lable='Login'
                     onPress={() => scrollview.current.scrollTo({ x: 0 })}
                 />
-             
+
                 <FormSelectorBtn
                     style={styles.borderRight}
                     backgroundColor={signupColorInterpolate}
@@ -108,10 +108,10 @@ const EmployerAppForm = ({ navigation }) => {
                     { useNativeDriver: false }
                 )}
             >
-                
-               <EmployeerLoginForm/>
+
+                <EmployeerLoginForm />
                 <ScrollView>
-                    <EmployerSignupForm/>
+                    <EmployerSignupForm />
                 </ScrollView>
             </ScrollView>
         </View>

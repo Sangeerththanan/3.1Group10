@@ -31,7 +31,7 @@ const Employees = () => {
             <Text style={styles.column}>{item.email}</Text>
             <Text style={styles.column}>{item.workType}</Text>
             <TouchableOpacity style={styles.actionsColumn}>
-                <DeleteBtn employeeEmail={item.email} onDelete={handleDeleteEmployee}/>
+                <DeleteBtn employeeEmail={item.email} onDelete={handleDeleteEmployee} />
             </TouchableOpacity>
         </View>
     );
