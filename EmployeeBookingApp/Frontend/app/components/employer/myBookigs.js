@@ -11,12 +11,12 @@ const MyBookings = () => {
 
     const fetchType = useCallback(async () => {
         try {
-            const response = await Client.get(/employers/discount/${email});
+            const response = await Client.get(`/employers/discount/${email}`);
             setBookings(response.data);
         } catch (error) {
             console.error('Error fetching type data:', error);
         }
-    }, [email]);
+    },[email]);
 
     useEffect(() => {
         fetchType();
@@ -45,7 +45,7 @@ const MyBookings = () => {
                 />
             ) : (
                 <Text style={styles.errorText}>No bookings found</Text>
-            )}
+            )};
         </View>
     );
 };
