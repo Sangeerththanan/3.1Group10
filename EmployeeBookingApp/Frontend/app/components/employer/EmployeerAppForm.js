@@ -48,7 +48,7 @@ const EmployerAppForm = ({ navigation }) => {
     const fetchApi = async () => {
         try {
 
-            const res = await axios.get('http://192.168.84.89/')
+            const res = await axios.get('http://192.168.254.91:8080')
 
             console.log(res.data)
         } catch (error) {
