@@ -24,6 +24,13 @@ const AddWorkType = () => {
         const res = await Client.post('/addWorkType', {
             ...values,
         });
+
+        if (res.data.success) {
+            alert('Work type successfully added!');
+        } else {
+            alert('Failed to add work type. Please try again.');
+        }
+
         console.log(res.data);
         formikAction.resetForm();
         formikAction.setSubmitting(false);

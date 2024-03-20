@@ -32,6 +32,13 @@ const AddItems = ({ navigation }) => {
       item: values.item,
       cost: costValue,
     });
+
+    if (res.data.success) {
+      alert('Item added successfully!');
+    } else {
+      alert('Failed to add item. Please try again later.');
+    }
+
     console.log(res.data);
     formikAction.resetForm();
     formikAction.setSubmitting(false);

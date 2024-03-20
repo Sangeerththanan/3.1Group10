@@ -31,11 +31,11 @@ const EmployeeComplain = () => {
             ...values,
         });
 
-        // if (res.data.success) {
-        //     navigation.dispatch(
-        //         StackActions.replace('EmployeeProfile')
-        //     );
-        // }
+        if (res.data.success) {
+            alert('Complaint successfully submitted! Thank you for bringing this to our attention.');
+        } else {
+            alert('Failed to submit complaint. Please ensure all information is correct and try again.');
+        }
 
         //console.log({ ...values, payment: paymentValue });
         console.log(res.data);

@@ -50,8 +50,6 @@ const EmployerSignupForm = ({ navigation }) => {
                 alert('Signup successful! You can now log in.');
             } else {
                 // Failed signup
-                console.log(res.data);
-                console.log('Hiii');
                 alert('Signup failed. Please check your information and try again.');
             }
 
