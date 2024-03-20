@@ -48,9 +48,10 @@ const EmployerSignupForm = ({ navigation }) => {
             if (res.data.success) {
                 // Successful signup
                 alert('Signup successful! You can now log in.');
-                navigation.navigate('Login'); // Redirect to the login screen
             } else {
                 // Failed signup
+                console.log(res.data);
+                console.log('Hiii');
                 alert('Signup failed. Please check your information and try again.');
             }
 
