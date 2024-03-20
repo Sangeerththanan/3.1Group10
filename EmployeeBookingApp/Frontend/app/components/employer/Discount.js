@@ -47,7 +47,7 @@ const Discount = () => {
             <Text style={styles.column}>{item.item}</Text>
             <Text style={styles.column}>{item.cost}</Text>
             <Text style={styles.column}>{item.cost * 0.9}</Text>
-            <Button
+            <Button style={styles.row}
                 title="Buy"
                 onPress={() => handleBuy(item)}
             />
