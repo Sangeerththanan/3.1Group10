@@ -16,7 +16,7 @@ const MyBookings = () => {
         } catch (error) {
             console.error('Error fetching type data:', error);
         }
-    },[email]);
+    }, [email]);
 
     useEffect(() => {
         fetchType();
@@ -45,7 +45,7 @@ const MyBookings = () => {
                 />
             ) : (
                 <Text style={styles.errorText}>No bookings found</Text>
-            )};
+            )}
         </View>
     );
 };

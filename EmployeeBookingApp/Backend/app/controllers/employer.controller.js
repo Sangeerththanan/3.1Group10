@@ -29,7 +29,7 @@ exports.create = (req, res) => {
       //confirmPassword: req.body.confirmPassword,
       contactNo: req.body.contactNo,
       address: req.body.address,
-        
+
       workType: req.body.workType,
       payment: req.body.payment ? req.body.payment : 250
     });
@@ -77,16 +77,16 @@ exports.signin = async (req, res) => {
 
 // Get employer details by email
 exports.findOne = (req, res) => {
-  const {email}= req.params;
-  Employer.findOne({email})
+  const { email } = req.params;
+  Employer.findOne({ email })
     .then(data => {
       if (!data)
-      res.status(404).send({ message: `Not found employer with email: ${email}` });
+        res.status(404).send({ message: `Not found employer with email: ${email}` });
       else res.json(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: `Error retrieving employer with email: + ${email}`});
+        .send({ message: `Error retrieving employer with email: + ${email}` });
     });
 };

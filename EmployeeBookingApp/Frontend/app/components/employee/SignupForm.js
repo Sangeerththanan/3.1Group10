@@ -45,11 +45,13 @@ const SignupForm = ({ navigation }) => {
             workType: selectedWorkType // Include the selected work type in the data
         });
 
-        // if (res.data.success) {
-        //     navigation.dispatch(
-        //         StackActions.replace('EmployeeProfile')
-        //     );
-        // }
+        if (res.data.success) {
+            // Successful signup
+            alert('Signup successful! You can now log in.');
+        } else {
+            // Failed signup
+            alert('Signup failed. Please check your information and try again.');
+        }
 
         //console.log({ ...values, payment: paymentValue });
         console.log(res.data);

@@ -6,9 +6,10 @@ import Client from '../../api/Client';
 // create a component
 const DeleteBtn = ({ employeeEmail, onDelete }) => {
     async function handleDelete() {
+        alert("Employee deletion successful.");
         console.log({ employeeEmail })
         try {
-            await Client.delete(`/employees/${ employeeEmail }`);
+            await Client.delete(`/employees/${employeeEmail}`);
             // Call the onDelete callback after successful deletion
             onDelete();
         } catch (error) {

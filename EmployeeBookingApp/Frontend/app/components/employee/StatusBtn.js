@@ -34,7 +34,7 @@ const StatusBtn = (props) => {
         >
             <Text
                 style={{ fontSize: 18, color: '#fff', padding: 10 }}
->
+            >
                 {status}
             </Text>
         </TouchableOpacity>
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default StatusBtn;
+export default StatusBtn;

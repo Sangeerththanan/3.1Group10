@@ -30,10 +30,10 @@ const StackNavigator = () => {
 const MainNavigator = () => {
   const { isLoggedIn, adminLoggedIn, employerLoggedIn } = useLogin();
   return (
-    adminLoggedIn ? <AdminDrawerNavigator /> 
-    : isLoggedIn ? <DrawerNavigator />
-    : employerLoggedIn ? <EmployerDrawerNavigator /> 
-    : <StackNavigator />
+    adminLoggedIn ? <AdminDrawerNavigator />
+      : isLoggedIn ? <DrawerNavigator />
+        : employerLoggedIn ? <EmployerDrawerNavigator />
+          : <StackNavigator />
   );
   //is logged in? <AdminDrawerNavigator /> : <StackNavigator />;
 };

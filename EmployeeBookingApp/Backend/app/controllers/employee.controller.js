@@ -76,17 +76,17 @@ exports.signin = async (req, res) => {
 
 // Get employee details by email
 exports.findOne = (req, res) => {
-  const {email}= req.params;
-  Employee.findOne({email})
+  const { email } = req.params;
+  Employee.findOne({ email })
     .then(data => {
       if (!data)
-      res.status(404).send({ message: `Not found employee with email: ${email}` });
+        res.status(404).send({ message: `Not found employee with email: ${email}` });
       else res.json(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: `Error retrieving employee with email: + ${email}`});
+        .send({ message: `Error retrieving employee with email: + ${email}` });
     });
 };
 
@@ -173,25 +173,25 @@ exports.updateStatus = async (req, res) => {
 };
 
 // Fetch all employee records
-exports.findAll= (req, res) => {
+exports.findAll = (req, res) => {
   Employee.find()
     .then(data => {
       if (!data)
-        res.status(404).send({ message: "Not found any employee "} );
+        res.status(404).send({ message: "Not found any employee " });
       else res.json(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving the employee records"});
+        .send({ message: "Error retrieving the employee records" });
     });
 };
 
 // Delete a employee record by registration number
 exports.delete = (req, res) => {
-  const {email}  = req.params;
+  const { email } = req.params;
 
-    Employee.findOneAndDelete({email}, { useFindAndModify: false })
+  Employee.findOneAndDelete({ email }, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
@@ -205,22 +205,23 @@ exports.delete = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete employee with { email } =" + email });
+        message: "Could not delete employee with { email } =" + email
+      });
     });
 };
 
 // Get employee details by work type
 exports.findType = (req, res) => {
-  const {workType}= req.params;
-  Employee.find({workType})
+  const { workType } = req.params;
+  Employee.find({ workType })
     .then(data => {
       if (!data)
-      res.status(404).send({ message: `Not found employee with email: ${workType}` });
+        res.status(404).send({ message: `Not found employee with email: ${workType}` });
       else res.json(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: `Error retrieving employee with email: + ${workType}`});
+        .send({ message: `Error retrieving employee with email: + ${workType}` });
     });
 };

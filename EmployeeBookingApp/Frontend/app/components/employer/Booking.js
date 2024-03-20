@@ -46,6 +46,7 @@ const Booking = () => {
             alert(`You have successfully booked ${employee.workType} ${employee.name}`);
         } catch (error) {
             console.error('Error creating booking:', error);
+            alert('Error creating booking:', error);
         }
     };
 
@@ -98,11 +99,15 @@ const Booking = () => {
                     <Text style={styles.headerColumn}>Work Type</Text>
                     <Text style={styles.headerColumn}>Actions</Text>
                 </View>
-                <FlatList
-                    data={employees}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={renderEmployeeItem}
-                />
+                {employees.length > 0 ? (
+                    <FlatList
+                        data={employees}
+                        keyExtractor={(item) => item.id.toString()}
+                        renderItem={renderEmployeeItem}
+                    />
+                ) : (
+                    <Text style={styles.errorText}>No employees found</Text>
+                )}
             </View>
         </>
     );
@@ -142,9 +147,15 @@ const styles = StyleSheet.create({
     },
     actionsColumn: {
         paddingHorizontal: 12,
-        paddingVertical:15,
+        paddingVertical: 15,
         justifyContent: 'center',
         alignItems: 'flex-end',
+    },
+    errorText: {
+        textAlign: 'center',
+        marginTop: 20,
+        fontSize: 16,
+        color: 'red',
     },
 });
 

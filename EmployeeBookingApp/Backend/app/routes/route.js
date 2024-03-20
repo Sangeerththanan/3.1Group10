@@ -40,8 +40,8 @@ module.exports = app => {
     router.get("/employees", employees.findAll);
     router.get("/complains", complains.findAll);
     router.get("/items", items.findAll);
-    router.get("/workTypes",workTypes.findAll);
-    router.get("/booking",booking.findAll);
+    router.get("/workTypes", workTypes.findAll);
+    router.get("/booking", booking.findAll);
 
     // Delete a employee with id
     router.delete("/employees/:email", employees.delete);
@@ -51,10 +51,10 @@ module.exports = app => {
 
     // Get discount details by bookings
     // Get Booking details by email
-    router.get("/employers/discount/:ERemail",booking.findType);
+    router.get("/employers/discount/:ERemail", booking.findType);
 
     // Get items details by types
-    router.get("/items/discount/:type",items.findType);
+    router.get("/items/discount/:type", items.findType);
 
     app.use("/api", router);
 };

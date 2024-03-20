@@ -1,8 +1,8 @@
 module.exports = mongoose => {
     const itemSchema = new mongoose.Schema({
-        type: { type: String , required: true},
-        item: { type: String , required: true},
-        cost: { type: Number , required: true},
+        type: { type: String, required: true },
+        item: { type: String, required: true },
+        cost: { type: Number, required: true },
     });
 
 

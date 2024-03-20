@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component, useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet,FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import Client from '../../api/Client';
 
 // create a component

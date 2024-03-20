@@ -1,15 +1,13 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 
-import Home from './components/Home';
-import Tasks from './components/Tasks';
 import { useLogin } from './context/LoginProvider';
 import EmployerProfile from './components/employer/EmployerProfile';
 import EmployeeComplain from './components/employer/EmployeeComplain';
 import Employment from './components/employee/Employment';
 import Discount from './components/employer/Discount';
 import Booking from './components/employer/Booking';
-import MyBookings from './components/employer/myBookigs';
+import MyBookings from './components/employer/MyBookings';
 
 const Drawer = createDrawerNavigator();   
 
@@ -62,8 +60,6 @@ const EmployerDrawerNavigator = () => {
       <Drawer.Screen component={MyBookings} name='MyBookings' />
       <Drawer.Screen component={Discount} name='Discount' />
       <Drawer.Screen component={EmployeeComplain} name='Complain' />
-      <Drawer.Screen component={Home} name='Home' />
-      <Drawer.Screen component={Tasks} name='Tasks' />
     </Drawer.Navigator>
   );
 };

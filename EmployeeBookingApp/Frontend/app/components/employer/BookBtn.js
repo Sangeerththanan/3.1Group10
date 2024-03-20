@@ -8,7 +8,7 @@ const BookBtn = () => {
         <TouchableOpacity style={styles.container}>
             <Text
                 style={{ fontSize: 18, color: '#fff', padding: 10 }}
-                // onPress={handleDelete}
+            // onPress={handleDelete}
             >
                 Book
             </Text>

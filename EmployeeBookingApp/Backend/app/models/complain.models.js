@@ -1,8 +1,8 @@
 module.exports = mongoose => {
     const complainSchema = new mongoose.Schema({
-        email: { type: String , required: true},
-        title: { type: String , required: true},
-        details: { type: String , required: true},
+        email: { type: String, required: true },
+        title: { type: String, required: true },
+        details: { type: String, required: true },
     });
 
     complainSchema.method("toJSON", function () {

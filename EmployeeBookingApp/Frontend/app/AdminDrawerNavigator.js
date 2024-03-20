@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 
-import Home from './components/Home';
-import Tasks from './components/Tasks';
 import { useLogin } from './context/LoginProvider';
 import Employees from './components/admin/Employees';
 import Complains from './components/admin/Complains';

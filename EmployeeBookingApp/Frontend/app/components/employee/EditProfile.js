@@ -62,7 +62,7 @@ const EditProfile = ({ route, navigation }) => {
         workType: '',
         payment: undefined,
     }
-    
+
     const update = async (values, formikAction) => {
         const paymentValue = parseFloat(values.payment);
         const res = await Client.put(`/employees/${employeeData.email}`, {
@@ -73,7 +73,7 @@ const EditProfile = ({ route, navigation }) => {
 
         const updatedData = await Client.get(`/employees/${values.email}`);
         console.log('Fetched Data:', updatedData.data);
-        
+
         // Extract only the necessary and serializable information
         const serializableData = {
             name: updatedData.data.name,

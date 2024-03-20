@@ -52,7 +52,7 @@ const EmployerProfile = ({ route, navigation }) => {
                     <Text style={styles.text}>{`Address: ${employerData.address}`}</Text>
                     <UserTypeButton
                         lable='Edit'
-                        // onPress={editProfile}
+                    // onPress={editProfile}
                     />
                 </View>
             ) : (
