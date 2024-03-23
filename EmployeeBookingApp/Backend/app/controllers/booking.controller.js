@@ -50,6 +50,7 @@ exports.findAll = (req, res) => {
 };
 
 // Get discount details by bookings
+//
 exports.findType = (req, res) => {
     const { ERemail } = req.params;
     Booking.find({ ERemail })
@@ -62,5 +63,21 @@ exports.findType = (req, res) => {
             res
                 .status(500)
                 .send({ message: `Error retrieving booking with email: + ${ERemail}` });
+        });
+};
+
+// Get Booking details by Employee's email
+exports.findEmployment = (req, res) => {
+    const { EEemail } = req.params;
+    Booking.find({ EEemail })
+        .then(data => {
+            if (!data)
+                res.status(404).send({ message: `Not found booking with email: ${EEemail}` });
+            else res.json(data);
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .send({ message: `Error retrieving booking with email: + ${EEemail}` });
         });
 };
