@@ -48,6 +48,7 @@ const SignupForm = ({ navigation }) => {
         if (res.data.success) {
             // Successful signup
             alert('Signup successful! You can now log in.');
+            navigation.navigate('UploadImage');
         } else {
             // Failed signup
             alert('Signup failed. Please check your information and try again.');
