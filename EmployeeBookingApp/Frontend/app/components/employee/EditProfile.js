@@ -9,7 +9,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 import Client from '../../api/Client';
-import { StackActions } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const validationSchema = Yup.object({
@@ -88,14 +87,6 @@ const EditProfile = ({ route, navigation }) => {
             navigation.navigate('Profile', { updatedData: serializableData });
         }
 
-        // if (res.data.success) {
-        //     navigation.dispatch(
-        //         StackActions.replace('EmployeeProfile')
-        //     );
-        // }
-
-        //console.log({ ...values, payment: paymentValue });
-        //console.log(res.data);
         formikAction.resetForm();
         formikAction.setSubmitting(false);
     };
