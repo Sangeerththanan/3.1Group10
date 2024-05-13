@@ -1,3 +1,3 @@
 module.exports = {
-    url: "mongodb://127.0.0.1:27017/EmployeeBookingApp"
+    url: "mongodb://192.168.139.58:27017/EmployeeBookingApp"
 };

@@ -5,6 +5,7 @@ import Client from '../../api/Client';
 import { useLogin } from '../../context/LoginProvider';
 import UserTypeButton from '../UserTypeButton';
 import UploadImage from '../employee/UploadImage';
+import Ratings from '../employer/Ratings';
 // create a component
 const EmployerProfile = ({ route, navigation }) => {
     const { updatedData } = route.params ?? {};
@@ -48,6 +49,7 @@ const EmployerProfile = ({ route, navigation }) => {
                     <UploadImage
                         style={{ width: 150, height: 150, borderRadius: 75, alignSelf: 'center' }}
                     /> 
+                    <Ratings/>
                     <Text style={{ fontSize: 35 }}>{`${employerData.name}`}</Text>
                     <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginVertical: 10 }} />
                     <Text style={styles.text}>{`Email: ${employerData.email}`}</Text>
