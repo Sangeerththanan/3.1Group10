@@ -1,4 +1,5 @@
 //import liraries
+import LocalHost from '../../localhost/LocalHost';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, ScrollView, StyleSheet, View, Image } from 'react-native';
 
@@ -48,7 +49,7 @@ const AppForm = ({ navigation }) => {
     const fetchApi = async () => {
         try {
 
-            const res = await axios.get('http://192.168.139.58:8080/')
+            const res = await axios.get(`http://${LocalHost.localhost}:8080/`)
 
             console.log(res.data)
         } catch (error) {

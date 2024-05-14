@@ -1,4 +1,5 @@
 //import liraries
+import LocalHost from '../../localhost/LocalHost';
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AdminLogin from './AdminLogin';
@@ -10,7 +11,7 @@ import { StackActions } from '@react-navigation/native';
 const AdminForm = ({ navigation }) => {
     const fetchApi = async () => {
         try {
-            const res = await axios.get('http://192.168.139.58:8080/')
+            const res = await axios.get(`http://${LocalHost.localhost}:8080/`)
 
             console.log(res.data)
         } catch (error) {
